@@ -631,6 +631,152 @@
             line-height: 1.6;
         }
 
+                /* Certyfikaty */
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .certificate-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 15px;
+            padding: 15px;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .certificate-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(255,255,255,0.5);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+        }
+
+        .certificate-card::before {
+            content: '🏆';
+            position: absolute;
+            font-size: 80px;
+            opacity: 0.05;
+            right: -10px;
+            bottom: -10px;
+            transition: all 0.3s ease;
+        }
+
+        .certificate-card:hover::before {
+            opacity: 0.1;
+            transform: rotate(15deg) scale(1.2);
+        }
+
+        .certificate-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .certificate-card:hover .certificate-image {
+            transform: scale(1.05);
+        }
+
+        .certificate-title {
+            color: white;
+            font-size: 1.1em;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .certificate-issuer {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9em;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .certificate-year {
+            color: #ffd93d;
+            font-size: 0.85em;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        #igor .certificate-year {
+            color: #00d4ff;
+        }
+
+        /* Modal dla powiększenia certyfikatu */
+        .certificate-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .certificate-modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .certificate-modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .certificate-modal-image {
+            max-width: 100%;
+            max-height: 85vh;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+        }
+
+        .certificate-modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: white;
+            color: #333;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .certificate-modal-close:hover {
+            transform: rotate(90deg) scale(1.1);
+            background: #ff4444;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .certificates-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .certificate-image {
+                height: 250px;
+            }
+        }
+        
         /* Social Links */
         .social-section {
             margin-top: 50px;
@@ -808,6 +954,34 @@
                 </div>
             </div>
 
+             <div class="content-section">
+            <div class="section">
+                <h2>🏆 Certyfikaty i Kwalifikacje</h2>
+                <div class="certificates-grid">
+                    <!-- Przykładowy certyfikat - zamień URL na swoje zdjęcia -->
+                    <div class="certificate-card" onclick="openCertificate('URL_DO_CERTYFIKATU_1')">
+                        <img src="URL_DO_CERTYFIKATU_1" alt="Certyfikat 1" class="certificate-image" onerror="this.src='https://via.placeholder.com/300x400/ff6b6b/ffffff?text=Certyfikat+1'">
+                        <div class="certificate-title">Certyfikat Trenera Personalnego</div>
+                        <div class="certificate-issuer">Akademia Fitness</div>
+                        <div class="certificate-year">2023</div>
+                    </div>
+                    
+                    <div class="certificate-card" onclick="openCertificate('URL_DO_CERTYFIKATU_2')">
+                        <img src="URL_DO_CERTYFIKATU_2" alt="Certyfikat 2" class="certificate-image" onerror="this.src='https://via.placeholder.com/300x400/ff8e53/ffffff?text=Certyfikat+2'">
+                        <div class="certificate-title">Dietetyk Sportowy</div>
+                        <div class="certificate-issuer">Instytut Żywienia</div>
+                        <div class="certificate-year">2022</div>
+                    </div>
+                    
+                    <div class="certificate-card" onclick="openCertificate('URL_DO_CERTYFIKATU_3')">
+                        <img src="URL_DO_CERTYFIKATU_3" alt="Certyfikat 3" class="certificate-image" onerror="this.src='https://via.placeholder.com/300x400/ffd93d/ffffff?text=Certyfikat+3'">
+                        <div class="certificate-title">Trening Funkcjonalny</div>
+                        <div class="certificate-issuer">International Fitness Academy</div>
+                        <div class="certificate-year">2024</div>
+                    </div>
+                </div>
+            </div>
+                 
             <div class="section">
                 <h2>📅 Harmonogram</h2>
                 <div class="schedule-grid">
@@ -990,6 +1164,33 @@
             </div>
 
             <div class="section">
+                <h2>🏆 Certyfikaty i Kwalifikacje</h2>
+                <div class="certificates-grid">
+                    <!-- Przykładowy certyfikat - zamień URL na swoje zdjęcia -->
+                    <div class="certificate-card" onclick="openCertificate('URL_DO_CERTYFIKATU_IGOR_1')">
+                        <img src="URL_DO_CERTYFIKATU_IGOR_1" alt="Certyfikat 1" class="certificate-image" onerror="this.src='https://via.placeholder.com/300x400/00d4ff/ffffff?text=Certyfikat+Instruktora'">
+                        <div class="certificate-title">Instruktor Pływania</div>
+                        <div class="certificate-issuer">Polski Związek Pływacki</div>
+                        <div class="certificate-year">2021</div>
+                    </div>
+                    
+                    <div class="certificate-card" onclick="openCertificate('URL_DO_CERTYFIKATU_IGOR_2')">
+                        <img src="URL_DO_CERTYFIKATU_IGOR_2" alt="Certyfikat 2" class="certificate-image" onerror="this.src='https://via.placeholder.com/300x400/0099ff/ffffff?text=Certyfikat+Ratownika'">
+                        <div class="certificate-title">Ratownik Wodny</div>
+                        <div class="certificate-issuer">WOPR</div>
+                        <div class="certificate-year">2020</div>
+                    </div>
+                    
+                    <div class="certificate-card" onclick="openCertificate('URL_DO_CERTYFIKATU_IGOR_3')">
+                        <img src="URL_DO_CERTYFIKATU_IGOR_3" alt="Certyfikat 3" class="certificate-image" onerror="this.src='https://via.placeholder.com/300x400/0066cc/ffffff?text=Certyfikat+Trenera'">
+                        <div class="certificate-title">Trener Pływania Sportowego</div>
+                        <div class="certificate-issuer">Akademia Wychowania Fizycznego</div>
+                        <div class="certificate-year">2023</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
                 <h2>📍 Lokalizacje</h2>
                 <div class="locations-grid">
                     <div class="location-card">
@@ -1086,6 +1287,43 @@
         </div>
     </div>
 
+    <!-- Modal dla certyfikatów -->
+    <div id="certificateModal" class="certificate-modal" onclick="closeCertificate()">
+        <div class="certificate-modal-content" onclick="event.stopPropagation()">
+            <button class="certificate-modal-close" onclick="closeCertificate()">×</button>
+            <img id="certificateModalImage" src="" alt="Certyfikat" class="certificate-modal-image">
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function openCertificate(imageUrl) {
+            const modal = document.getElementById('certificateModal');
+            const modalImage = document.getElementById('certificateModalImage');
+            modalImage.src = imageUrl;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCertificate() {
+            const modal = document.getElementById('certificateModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Zamknij modal po naciśnięciu ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeCertificate();
+            }
+        });
+    </script>
     <script>
         function showPage(pageId) {
             const pages = document.querySelectorAll('.page');
