@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zuzu CORP - Zuzia Lipecka & Igor Dzierkacz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .page {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .page.active {
+            display: block;
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Strona główna */
+        .home-page {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e22ce 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .home-page::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveBackground 20s linear infinite;
+        }
+
+        @keyframes moveBackground {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .main-title {
+            text-align: center;
+            color: white;
+            margin-bottom: 60px;
+            z-index: 1;
+        }
+
+        .main-title h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .main-title p {
+            font-size: 1.4em;
+            opacity: 0.95;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 50px;
+            width: 100%;
+            max-width: 900px;
+            z-index: 1;
+        }
+
+        .trainer-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 45px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trainer-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 0%, rgba(126, 34, 206, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .trainer-card:hover::before {
+            opacity: 1;
+        }
+
+        .trainer-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+        }
+
+        .trainer-card img {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 25px;
+            border: 6px solid #7e22ce;
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .trainer-card:hover img {
+            transform: scale(1.1);
+            border-color: #1e3c72;
+        }
+
+        .trainer-card h2 {
+            color: #1e3c72;
+            margin-bottom: 10px;
+            font-size: 2em;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        .trainer-card p {
+            color: #666;
+            font-size: 1.2em;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Profile pages - różne motywy */
+        .profile-page {
+            min-height: 100vh;
+            padding-bottom: 40px;
+        }
+
+        /* Motyw siłowni dla Zuzi */
+        #zuzia {
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 30%, #2d1b1b 60%, #1a1a1a 100%);
+            position: relative;
+        }
+
+        #zuzia::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 107, 107, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 50%, rgba(255, 217, 61, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        #zuzia .profile-header {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 25%, #ffb347 50%, #ffd93d 75%, #ff8e53 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #zuzia .profile-header::before {
+            content: '💪';
+            position: absolute;
+            font-size: 300px;
+            opacity: 0.15;
+            right: -50px;
+            top: -50px;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        #zuzia .profile-header::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            animation: shine 3s ease-in-out infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Motyw basenu dla Igora */
+        #igor {
+            background: linear-gradient(to bottom, #0a192f 0%, #112240 100%);
+        }
+
+        #igor .profile-header {
+            background: linear-gradient(135deg, #00d4ff 0%, #0099ff 50%, #0066cc 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #igor .profile-header::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path fill="rgba(255,255,255,0.1)" d="M0,50 Q300,20 600,50 T1200,50 L1200,120 L0,120 Z"/></svg>');
+            background-size: 100% 100%;
+            bottom: 0;
+            animation: wave 8s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-50px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.1; }
+            50% { transform: scale(1.05); opacity: 0.15; }
+        }
+
+        .back-button {
+            position: fixed;
+            top: 25px;
+            left: 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 17px;
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-button::before {
+            content: '←';
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+
+        .back-button:hover::before {
+            transform: translateX(-5px);
+        }
+
+        .profile-header {
+            color: white;
+            padding: 100px 20px 60px;
+            text-align: center;
+            position: relative;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid white;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            position: relative;
+            z-index: 1;
+            transition: transform 0.4s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 800;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-header p {
+            font-size: 1.4em;
+            opacity: 0.95;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+
+        .content-section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 35px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        .section h2 {
+            color: white;
+            margin-bottom: 30px;
+            font-size: 2em;
+            font-weight: 700;
+            border-bottom: 3px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Nowoczesny harmonogram */
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .schedule-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .schedule-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #ffd93d);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        #igor .schedule-card::before {
+            background: linear-gradient(90deg, #00d4ff, #0099ff);
+        }
+
+        .schedule-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255,255,255,0.4);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .schedule-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .schedule-day {
+            color: #ffd93d;
+            font-weight: 700;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #igor .schedule-day {
+            color: #00d4ff;
+        }
+
+        .schedule-time {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.1em;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .schedule-desc {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        /* Usługi */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255,255,255,0.4);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        .service-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .service-card strong {
+            color: white;
+            display: block;
+            margin-bottom: 12px;
+            font-size: 1.2em;
+        }
+
+        .service-card p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        /* Opinie */
+        .opinions-container {
+            display: grid;
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .opinion-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            border-left: 5px solid #ffd93d;
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        #igor .opinion-card {
+            border-left-color: #00d4ff;
+        }
+
+        .opinion-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .opinion-card::before {
+            content: '"';
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            font-size: 4em;
+            color: rgba(255,255,255,0.1);
+            font-family: Georgia, serif;
+        }
+
+        .opinion-text {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.05em;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .opinion-author {
+            color: #ffd93d;
+            font-weight: 600;
+            font-size: 1em;
+        }
+
+        #igor .opinion-author {
+            color: #00d4ff;
+        }
+
+        .opinion-rating {
+            color: #ffd93d;
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+
+        /* Kontakt */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255,255,255,0.4);
+        }
+
+        .contact-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .contact-card strong {
+            color: white;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .contact-card p {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.05em;
+        }
+
+        /* Lokalizacje dla Igora */
+        .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .location-card {
+            background: linear-gradient(135deg, rgba(255,107,107,0.15) 0%, rgba(255,217,61,0.05) 100%);
+            border: 2px solid rgba(255,142,83,0.3);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        #zuzia .location-card:hover {
+            transform: scale(1.03);
+            border-color: rgba(255,142,83,0.6);
+            box-shadow: 0 15px 40px rgba(255,107,107,0.3);
+        }
+
+        #igor .location-card {
+            background: linear-gradient(135deg, rgba(0,212,255,0.15) 0%, rgba(0,153,255,0.05) 100%);
+            border: 2px solid rgba(0,212,255,0.3);
+        }
+
+        #igor .location-card:hover {
+            transform: scale(1.03);
+            border-color: rgba(0,212,255,0.5);
+            box-shadow: 0 15px 40px rgba(0,212,255,0.2);
+        }
+
+        .location-name {
+            color: #00d4ff;
+            font-size: 1.4em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #zuzia .location-name {
+            color: #ff8e53;
+        }
+
+        .location-address {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 10px;
+            font-size: 1.05em;
+        }
+
+        .location-hours {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        /* Social Links */
+        .social-section {
+            margin-top: 50px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 35px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.5s, height 0.5s;
+        }
+
+        .social-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .social-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+
+        .social-btn.facebook {
+            background: linear-gradient(135deg, #1877f2 0%, #0d5dbf 100%);
+            color: white;
+        }
+
+        .social-btn.instagram {
+            background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .main-title h1 {
+                font-size: 2.2em;
+            }
+            
+            .cards-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .schedule-grid,
+            .services-grid,
+            .contact-grid,
+            .locations-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .social-links {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .profile-header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Strona główna -->
+    <div id="home" class="page active">
+        <div class="home-page">
+            <div class="container">
+                <div class="main-title">
+                    <h1>Profesjonalni Trenerzy</h1>
+                    <p>Wybierz swojego trenera i zacznij swoją transformację</p>
+                </div>
+                <div class="cards-container">
+                    <div class="trainer-card" onclick="showPage('zuzia')">
+                        <img src="https://static.oferteo.pl/images/portfolio/6732767/256px_s/1730906804823-crop-img-5701.jpeg.jpg" alt="Zuzia Lipecka">
+                        <h2>Zuzia Lipecka</h2>
+                        <p>Trener Personalny</p>
+                    </div>
+                    <div class="trainer-card" onclick="showPage('igor')">
+                        <img src="https://static.oferteo.pl/images/portfolio/6732784/256px_s/1737451573841-1737451572300_avatar.jpg" alt="Igor Dzierkacz">
+                        <h2>Igor Dzierkacz</h2>
+                        <p>Szkółka Pływania</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profil Zuzi Lipeckiej -->
+    <div id="zuzia" class="page profile-page">
+        <button class="back-button" onclick="showPage('home')">Powrót</button>
+        
+        <div class="profile-header">
+            <img src="https://static.oferteo.pl/images/portfolio/6732767/256px_s/1730906804823-crop-img-5701.jpeg.jpg" alt="Zuzia Lipecka" class="profile-img">
+            <h1>Zuzia Lipecka</h1>
+            <p>Certyfikowany Trener Personalny</p>
+        </div>
+
+        <div class="content-section">
+            <div class="section">
+                <h2>📍 Lokalizacja</h2>
+                <div class="locations-grid">
+                    <div class="location-card">
+                        <div class="location-name">🏋️ Siłownia Premium Fitness</div>
+                        <div class="location-address">📍 ul. Sportowa 25, Warszawa Mokotów</div>
+                        <div class="location-hours">
+                            🕐 Pon-Pt: 6:00 - 21:00<br>
+                            🕐 Sobota: 8:00 - 14:00<br>
+                            🕐 Niedziela: Konsultacje online
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>💪 O mnie</h2>
+                <p style="color: rgba(255,255,255,0.85); font-size: 1.1em; line-height: 1.8;">Jestem certyfikowanym trenerem personalnym z pasją do pomagania ludziom w osiąganiu ich celów fitness. Specjalizuję się w treningach siłowych, funkcjonalnych oraz planowaniu indywidualnych diet. Moje podejście łączy profesjonalizm z indywidualnym podejściem do każdego klienta. Razem przekroczymy Twoje granice!</p>
+            </div>
+
+            <div class="section">
+                <h2>🎯 Moje Usługi</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🏋️</div>
+                        <strong>Trening Personalny</strong>
+                        <p>Indywidualne sesje treningowe dopasowane do Twoich celów</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">📱</div>
+                        <strong>Plany Online</strong>
+                        <p>Spersonalizowane programy treningowe z moim wsparciem</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🥗</div>
+                        <strong>Konsultacje Żywieniowe</strong>
+                        <p>Zdrowa dieta dopasowana do Twojego stylu życia</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">👥</div>
+                        <strong>Treningi Grupowe</strong>
+                        <p>Motywujące zajęcia w małych grupach</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>📅 Harmonogram</h2>
+                <div class="schedule-grid">
+                    <div class="schedule-card">
+                        <div class="schedule-day">🔥 Poniedziałek</div>
+                        <div class="schedule-time">6:00 - 21:00</div>
+                        <div class="schedule-desc">Treningi personalne i grupowe dostępne przez cały dzień</div>
+                    </div>
+                    <div class="schedule-card">
+                        <div class="schedule-day">💪 Wtorek</div>
+                        <div class="schedule-time">6:00 - 21:00</div>
+                        <div class="schedule-desc">Sesje indywidualne i treningi funkcjonalne</div>
+                    </div>
+                    <div class="schedule-card">
+                        <div class="schedule-day">⚡ Środa</div>
+                        <div class="schedule-time">6:00 - 21:00</div>
+                        <div class="schedule-desc">Zajęcia grupowe i treningi siłowe</div>
+                    </div>
+                    <div class="schedule-card">
+                        <div class="schedule-day">🎯 Czwartek</div>
+                        <div class="schedule-time">6:00 - 21:00</div>
+                        <div class="schedule-desc">Wszystkie formy treningów dostępne</div>
+                    </div>
+                    <div class="schedule-card">
+                        <div class="schedule-day">🔋 Piątek</div>
+                        <div class="schedule-time">6:00 - 21:00</div>
+                        <div class="schedule-desc">Zakończ tydzień intensywnym treningiem!</div>
+                    </div>
+                    <div class="schedule-card">
+                        <div class="schedule-day">☀️ Sobota</div>
+                        <div class="schedule-time">8:00 - 14:00</div>
+                        <div class="schedule-desc">Treningi personalne w weekendowej atmosferze</div>
+                    </div>
+                    <div class="schedule-card">
+                        <div class="schedule-day">🏖️ Niedziela</div>
+                        <div class="schedule-time">Dzień regeneracji</div>
+                        <div class="schedule-desc">Konsultacje online i planowanie diet</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>⭐ Opinie Klientów</h2>
+                <div class="opinions-container">
+                    <div class="opinion-card">
+                        <div class="opinion-text">Zuzia to najlepszy trener, jakiego mogłam sobie wymarzyć! Dzięki niej schudłam 15 kg i wreszcie czuję się pewnie w swoim ciele. Jej podejście jest profesjonalne, ale jednocześnie bardzo motywujące. Polecam z całego serca!</div>
+                        <div class="opinion-author">- Anna, 32 lata</div>
+                        <div class="opinion-rating">⭐⭐⭐⭐⭐</div>
+                    </div>
+                    <div class="opinion-card">
+                        <div class="opinion-text">Profesjonalizm na najwyższym poziomie. Indywidualne podejście i motywacja to klucz do sukcesu. Z Zuzią treningi to czysta przyjemność! Każda sesja to nowe wyzwanie i krok bliżej do wymarzonej sylwetki.</div>
+                        <div class="opinion-author">- Michał, 28 lat</div>
+                        <div class="opinion-rating">⭐⭐⭐⭐⭐</div>
+                    </div>
+                    <div class="opinion-card">
+                        <div class="opinion-text">Trenuję z Zuzią od pół roku i widzę ogromną różnicę nie tylko w sylwetce, ale też w samopoczuciu. Nauczyła mnie, że trening to styl życia, a nie przymus. Gorąco polecam wszystkim, którzy szukają motywacji!</div>
+                        <div class="opinion-author">- Karolina, 35 lat</div>
+                        <div class="opinion-rating">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>📞 Kontakt</h2>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="contact-icon">📱</div>
+                        <strong>Telefon</strong>
+                        <p>+48 XXX XXX XXX</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">✉️</div>
+                        <strong>Email</strong>
+                        <p>zuzia.lipecka@trening.pl</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">📍</div>
+                        <strong>Lokalizacja</strong>
+                        <p>Warszawa, Mazowieckie</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="social-section">
+                <div class="social-links">
+                    <a href="https://www.facebook.com/p/Zuzia-Lipecka-Trener-Personalny-61573754944899/" target="_blank" class="social-btn facebook">
+                        <span>📘</span>
+                        <span>Facebook</span>
+                    </a>
+                    <a href="https://www.instagram.com/forma_pod_lipa/?g=5" target="_blank" class="social-btn instagram">
+                        <span>📸</span>
+                        <span>Instagram</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profil Igora Dzierkacza -->
+    <div id="igor" class="page profile-page">
+        <button class="back-button" onclick="showPage('home')">Powrót</button>
+        
+        <div class="profile-header">
+            <img src="https://static.oferteo.pl/images/portfolio/6732784/256px_s/1737451573841-1737451572300_avatar.jpg" alt="Igor Dzierkacz" class="profile-img">
+            <h1>Igor Dzierkacz</h1>
+            <p>Profesjonalna Szkółka Pływania</p>
+        </div>
+
+        <div class="content-section">
+            <div class="section">
+                <h2>🏊 O mnie</h2>
+                <p style="color: rgba(255,255,255,0.85); font-size: 1.1em; line-height: 1.8;">Jestem doświadczonym instruktorem pływania z wieloletnią praktyką w nauczaniu dzieci i dorosłych. Moja szkółka pływania to miejsce, gdzie każdy - niezależnie od wieku i poziomu zaawansowania - może nauczyć się pływać lub doskonalić swoją technikę w przyjaznej i bezpiecznej atmosferze. Woda to moja pasja!</p>
+            </div>
+
+            <div class="section">
+                <h2>🎯 Moje Usługi</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">👶</div>
+                        <strong>Nauka dla Dzieci</strong>
+                        <p>Zabawy w wodzie i nauka pływania dla najmłodszych od 3 lat</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🏊‍♂️</div>
+                        <strong>Lekcje dla Dorosłych</strong>
+                        <p>Indywidualne i grupowe lekcje - od podstaw do zaawansowanych</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">⚡</div>
+                        <strong>Doskonalenie Techniki</strong>
+                        <p>Udoskonalenie stylu w dowolnym, grzbietowym, klasycznym lub motylkowym</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🏆</div>
+                        <strong>Przygotowanie do Zawodów</strong>
+                        <p>Zaawansowane treningi dla przyszłych zawodników</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>📅 Harmonogram</h2>
+                <div class="schedule-grid">
+                    <div class="schedule-card">
+                        <div class="schedule-day">🌊 Poniedziałek</div>
+                        <div class="schedule-time">15:00 - 20:00</div>
+                        <div class="schedule-desc">Zajęcia dla dzieci i młodzieży - wszystkie poziomy</div>
+                    </div>
+                    <div class="schedule-card">
+                        <div class="schedule-day">💧 Wtorek</div>
+                        <div class="schedule-time">17:00 - 21:00</div>
+                        <div class="schedule-desc">Zajęcia dla dorosłych - nauka i doskonalenie</div>
+                    </div>
+                    <div class="schedule-card">
+                        <div class="schedule-day">🏊 Środa</div>
+                        <div class="schedule-time">15:00 - 20:00</div>
+                        <div class="schedule-desc">Grupy dziecięce i treningi indywidualne</div>
+                    </div>
+                    <div class="schedule-card">
+                        <div class="schedule-day">💙 Czwartek</div>
+                        <div class="schedule-time">17:00 - 21:00</div>
+                        <div class="schedule-desc">Zajęcia dla dorosłych i zaawansowane treningi</div>
+                    </div>
+                    <div class="schedule-card">
+                        <div class="schedule-day">🌟 Piątek</div>
+                        <div class="schedule-time">15:00 - 20:00</div>
+                        <div class="schedule-desc">Zakończ tydzień świetnym treningiem w wodzie!</div>
+                    </div>
+                    <div class="schedule-card">
+                        <div class="schedule-day">☀️ Sobota</div>
+                        <div class="schedule-time">9:00 - 15:00</div>
+                        <div class="schedule-desc">Zajęcia grupowe i indywidualne dla wszystkich</div>
+                    </div>
+                    <div class="schedule-card">
+                        <div class="schedule-day">👨‍👩‍👧‍👦 Niedziela</div>
+                        <div class="schedule-time">10:00 - 13:00</div>
+                        <div class="schedule-desc">Zajęcia rodzinne - pływajcie razem!</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>📍 Lokalizacje</h2>
+                <div class="locations-grid">
+                    <div class="location-card">
+                        <div class="location-name">🏊 Basen Miejski Centrum</div>
+                        <div class="location-address">📍 ul. Sportowa 15, Warszawa Śródmieście</div>
+                        <div class="location-hours">
+                            🕐 Pon, Śr, Pt: 15:00 - 20:00<br>
+                            🕐 Sobota: 9:00 - 15:00
+                        </div>
+                    </div>
+                    <div class="location-card">
+                        <div class="location-name">🏊 Aquapark Mokotów</div>
+                        <div class="location-address">📍 ul. Wodna 22, Warszawa Mokotów</div>
+                        <div class="location-hours">
+                            🕐 Wt, Czw: 17:00 - 21:00<br>
+                            🕐 Niedziela: 10:00 - 13:00
+                        </div>
+                    </div>
+                    <div class="location-card">
+                        <div class="location-name">🏊 Centrum Rekreacji Bielany</div>
+                        <div class="location-address">📍 ul. Basenowa 8, Warszawa Bielany</div>
+                        <div class="location-hours">
+                            🕐 Pon-Pt: 16:00 - 19:00<br>
+                            🕐 Sobota: 10:00 - 14:00
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>⭐ Opinie Klientów</h2>
+                <div class="opinions-container">
+                    <div class="opinion-card">
+                        <div class="opinion-text">Mój syn bał się wody, a teraz dzięki Igorowi pływa jak rybka! Ogromne podziękowania za cierpliwość i profesjonalizm. Igor ma niesamowity dar do pracy z dziećmi!</div>
+                        <div class="opinion-author">- Magdalena, mama 7-letniego Kubusia</div>
+                        <div class="opinion-rating">⭐⭐⭐⭐⭐</div>
+                    </div>
+                    <div class="opinion-card">
+                        <div class="opinion-text">W wieku 35 lat nauczyłem się wreszcie pływać! Igor ma niesamowity dar do nauczania i motywowania. Każda lekcja była przyjemnością. Polecam każdemu, kto chce pokonać swoje lęki!</div>
+                        <div class="opinion-author">- Piotr, 35 lat</div>
+                        <div class="opinion-rating">⭐⭐⭐⭐⭐</div>
+                    </div>
+                    <div class="opinion-card">
+                        <div class="opinion-text">Najlepsza szkółka pływania w okolicy! Bezpieczna atmosfera, profesjonalna obsługa i świetne efekty. Córka uwielbia zajęcia i nie może się doczekać każdej lekcji. To najlepsza inwestycja!</div>
+                        <div class="opinion-author">- Agnieszka, mama 5-letniej Zosi</div>
+                        <div class="opinion-rating">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>📞 Kontakt</h2>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="contact-icon">📱</div>
+                        <strong>Telefon</strong>
+                        <p>+48 XXX XXX XXX</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">✉️</div>
+                        <strong>Email</strong>
+                        <p>igor.dzierkacz@plywanie.pl</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">📍</div>
+                        <strong>Główna Lokalizacja</strong>
+                        <p>Basen Miejski Centrum, Warszawa</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="social-section">
+                <div class="social-links">
+                    <a href="https://www.facebook.com/p/Igor-Dzierkacz-61566269692729/" target="_blank" class="social-btn facebook">
+                        <span>📘</span>
+                        <span>Facebook</span>
+                    </a>
+                    <a href="https://www.instagram.com/igor_dzierkacz/" target="_blank" class="social-btn instagram">
+                        <span>📸</span>
+                        <span>Instagram</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
