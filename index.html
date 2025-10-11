@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zuzu CORP - Zuzia Lipecka & Igor Dzierkacz</title>
+    <title>Profesjonalni Trenerzy - Zuzia Lipecka & Igor Dzierkacz</title>
     <style>
         * {
             margin: 0;
@@ -230,8 +230,8 @@
         #igor .profile-header::before {
             content: '';
             position: absolute;
-            width: 300%;
-            height: 300%;
+            width: 100%;
+            height: 100%;
             background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path fill="rgba(255,255,255,0.1)" d="M0,50 Q300,20 600,50 T1200,50 L1200,120 L0,120 Z"/></svg>');
             background-size: 100% 100%;
             bottom: 0;
@@ -484,7 +484,6 @@
             border-left: 5px solid #ffd93d;
             border-radius: 15px;
             padding: 30px;
-            margin: 10px;
             transition: all 0.3s ease;
             position: relative;
         }
@@ -631,7 +630,7 @@
             line-height: 1.6;
         }
 
-                /* Certyfikaty */
+        /* Certyfikaty */
         .certificates-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -776,8 +775,6 @@
                 height: 250px;
             }
         }
-        
-        /* Social Links */
         .social-section {
             margin-top: 50px;
             padding: 40px;
@@ -909,6 +906,33 @@
 
         <div class="content-section">
             <div class="section">
+                <h2>🏆 Certyfikaty i Kwalifikacje</h2>
+                <div class="certificates-grid">
+                    <!-- Przykładowy certyfikat - zamień URL na swoje zdjęcia -->
+                    <div class="certificate-card" onclick="openCertificate('URL_DO_CERTYFIKATU_1')">
+                        <img src="URL_DO_CERTYFIKATU_1" alt="Certyfikat 1" class="certificate-image" onerror="this.src='https://via.placeholder.com/300x400/ff6b6b/ffffff?text=Certyfikat+1'">
+                        <div class="certificate-title">Certyfikat Trenera Personalnego</div>
+                        <div class="certificate-issuer">Akademia Fitness</div>
+                        <div class="certificate-year">2023</div>
+                    </div>
+                    
+                    <div class="certificate-card" onclick="openCertificate('URL_DO_CERTYFIKATU_2')">
+                        <img src="URL_DO_CERTYFIKATU_2" alt="Certyfikat 2" class="certificate-image" onerror="this.src='https://via.placeholder.com/300x400/ff8e53/ffffff?text=Certyfikat+2'">
+                        <div class="certificate-title">Dietetyk Sportowy</div>
+                        <div class="certificate-issuer">Instytut Żywienia</div>
+                        <div class="certificate-year">2022</div>
+                    </div>
+                    
+                    <div class="certificate-card" onclick="openCertificate('URL_DO_CERTYFIKATU_3')">
+                        <img src="URL_DO_CERTYFIKATU_3" alt="Certyfikat 3" class="certificate-image" onerror="this.src='https://via.placeholder.com/300x400/ffd93d/ffffff?text=Certyfikat+3'">
+                        <div class="certificate-title">Trening Funkcjonalny</div>
+                        <div class="certificate-issuer">International Fitness Academy</div>
+                        <div class="certificate-year">2024</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
                 <h2>📍 Lokalizacja</h2>
                 <div class="locations-grid">
                     <div class="location-card">
@@ -953,35 +977,7 @@
                     </div>
                 </div>
             </div>
-            
-             <div class="content-section">
-            <div class="section">
-                <h2>🏆 Certyfikaty i Kwalifikacje</h2>
-                <div class="certificates-grid">
-                    <!-- Przykładowy certyfikat - zamień URL na swoje zdjęcia -->
-                    <div class="certificate-card" onclick="openCertificate('URL_DO_CERTYFIKATU_1')">
-                        <img src="URL_DO_CERTYFIKATU_1" alt="Certyfikat 1" class="certificate-image" onerror="this.src='https://via.placeholder.com/300x400/ff6b6b/ffffff?text=Certyfikat+1'">
-                        <div class="certificate-title">Certyfikat Trenera Personalnego</div>
-                        <div class="certificate-issuer">Akademia Fitness</div>
-                        <div class="certificate-year">2023</div>
-                    </div>
-                    
-                    <div class="certificate-card" onclick="openCertificate('URL_DO_CERTYFIKATU_2')">
-                        <img src="URL_DO_CERTYFIKATU_2" alt="Certyfikat 2" class="certificate-image" onerror="this.src='https://via.placeholder.com/300x400/ff8e53/ffffff?text=Certyfikat+2'">
-                        <div class="certificate-title">Dietetyk Sportowy</div>
-                        <div class="certificate-issuer">Instytut Żywienia</div>
-                        <div class="certificate-year">2022</div>
-                    </div>
-                    
-                    <div class="certificate-card" onclick="openCertificate('URL_DO_CERTYFIKATU_3')">
-                        <img src="URL_DO_CERTYFIKATU_3" alt="Certyfikat 3" class="certificate-image" onerror="this.src='https://via.placeholder.com/300x400/ffd93d/ffffff?text=Certyfikat+3'">
-                        <div class="certificate-title">Trening Funkcjonalny</div>
-                        <div class="certificate-issuer">International Fitness Academy</div>
-                        <div class="certificate-year">2024</div>
-                    </div>
-                </div>
-            </div>
-                 
+
             <div class="section">
                 <h2>📅 Harmonogram</h2>
                 <div class="schedule-grid">
@@ -1162,7 +1158,7 @@
                     </div>
                 </div>
             </div>
-             
+
             <div class="section">
                 <h2>🏆 Certyfikaty i Kwalifikacje</h2>
                 <div class="certificates-grid">
