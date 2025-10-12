@@ -587,6 +587,17 @@
             transition: all 0.3s ease;
         }
 
+        .location-map {
+            width: 100%;
+            height: 250px;
+            border-radius: 10px;
+            margin-top: 15px;
+            border: 2px solid rgba(255,255,255,0.2);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            max-width: 100%;
+            display: block;
+        }
+
         #zuzia .location-card:hover {
             transform: scale(1.03);
             border-color: rgba(255,142,83,0.6);
@@ -849,6 +860,16 @@
             .cards-container {
                 grid-template-columns: 1fr;
                 gap: 30px;
+                padding: 0 10px;
+            }
+
+            .trainer-card {
+                padding: 30px 20px;
+            }
+
+            .trainer-card img {
+                width: 140px;
+                height: 140px;
             }
 
             .schedule-grid,
@@ -865,6 +886,66 @@
 
             .profile-header h1 {
                 font-size: 2em;
+            }
+
+            .profile-img {
+                width: 150px;
+                height: 150px;
+            }
+
+            .section {
+                padding: 25px 20px;
+                margin-bottom: 20px;
+            }
+
+            .section h2 {
+                font-size: 1.5em;
+            }
+
+            .back-button {
+                padding: 12px 20px;
+                font-size: 15px;
+                top: 15px;
+                left: 15px;
+            }
+
+            .schedule-card,
+            .service-card,
+            .contact-card,
+            .location-card,
+            .certificate-card {
+                padding: 20px;
+            }
+
+            .location-map {
+                height: 200px;
+            }
+
+            .certificate-image {
+                height: 200px;
+            }
+
+            .certificates-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .certificate-modal-close {
+                top: 10px;
+                right: 10px;
+            }
+
+            .social-btn {
+                padding: 15px 25px;
+                font-size: 1em;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .content-section {
+                padding: 30px 15px;
             }
         }
     </style>
@@ -915,6 +996,7 @@
                         <div class="certificate-issuer">Trener Personalny</div>
                         <div class="certificate-year">2024</div>
                     </div>
+                    </div>
                 </div>
             </div>
 
@@ -954,6 +1036,7 @@ Dołącz do mnie i rozpocznij tę wspaniałą podróż ku lepszemu zdrowiu i sam
 </p>
                 <p style="color: #FFD700; font-size: 1.5em; line-height: 1.8;">PIERWSZY TRENING -50%😊</p>
             </div>
+
             <div class="section">
                 <h2>🎯 Moje Usługi</h2>
                 <div class="services-grid">
