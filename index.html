@@ -170,51 +170,49 @@
             padding-bottom: 40px;
         }
 
-        /* Motyw siłowni dla Zuzi */
-        #zuzia {
-            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 30%, #2d1b1b 60%, #1a1a1a 100%);
-            position: relative;
-        }
+/* Motyw siłowni dla Zuzi - Zmodyfikowany */
+#zuzia {
+    /* Zachowuje ciemne tło strony dla kontrastu z białym tekstem, ale z różowym akcentem */
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d1b1b 50%, #3d2020 100%);
+    position: relative;
+}
 
-        #zuzia::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 50%, rgba(255, 107, 107, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 50%, rgba(255, 217, 61, 0.1) 0%, transparent 50%);
-            pointer-events: none;
-        }
+#zuzia::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* Różowe/Czerwone akcenty w tle strony */
+    background: radial-gradient(circle at 20% 50%, rgba(255, 107, 107, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(255, 192, 203, 0.1) 0%, transparent 50%); /* Dodano różowy akcent */
+    pointer-events: none;
+}
 
-        #zuzia .profile-header {
-            background-image: url(https://github.com/SeN1237/strona-suzi/blob/main/IMG_9160.jpg?raw=true);
-            background-size: cover;
-            background-position: center center;
-            position: relative;
-            overflow: hidden;
-        }
+#zuzia .profile-header {
+    /* NOWY RÓŻOWY GRADIENT - ZASTĘPUJE ZDJĘCIE W TLE */
+    background: linear-gradient(135deg, #FF69B4 0%, #C71585 100%);
+    position: relative;
+    overflow: hidden;
+}
 
-        #zuzia .profile-header::before {
-            content: '💪';
-            position: absolute;
-            font-size: 300px;
-            opacity: 0.15;
-            right: -50px;
-            top: -50px;
-            animation: pulse 3s ease-in-out infinite;
-            text-shadow: 0 0 20px rgba(0,0,0,0.5); /* Added for better visibility over image */
-        }
+/* Usuwamy ikonę '💪' z tła nagłówka */
+#zuzia .profile-header::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: transparent;
+    pointer-events: none;
+    z-index: 0;
+}
 
-        #zuzia .profile-header::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background: rgba(0,0,0,0.3); /* Dark overlay for text readability */
-            z-index: 0;
-        }
+/* Usuwamy czarną nakładkę (nie jest potrzebna na gradienice) */
+#zuzia .profile-header::after {
+    content: '';
+    display: none;
+}
 
         @keyframes shine {
             0% { transform: translateX(-100%); }
@@ -1015,7 +1013,7 @@
                         <p>Trener Personalny</p>
                     </div>
                     <div class="trainer-card" onclick="showPage('igor')">
-                        <img src="https://static.oferteo.pl/images/portfolio/6732784/576px_s/1737451573841-1737451572300_avatar.jpg" alt="Igor Dzierkacz">
+                        <img src="https://github.com/SeN1237/strona-suzi/blob/main/unnamed.jpg?raw=true" alt="Igor Dzierkacz">
                         <h2>Igor Dzierkacz</h2>
                         <p>Szkółka Pływania</p>
                     </div>
@@ -1028,24 +1026,10 @@
         <button class="back-button" onclick="showPage('home')">Powrót</button>
         
         <div class="profile-header">
-            <img src="https://static.oferteo.pl/images/portfolio/6732767/256px_s/1730906804823-crop-img-5701.jpeg.jpg" alt="Zuzia Lipecka" class="profile-img">
+            <img src="https://github.com/SeN1237/strona-suzi/blob/main/IMG_9160.jpg?raw=true" alt="Zuzia Lipecka" class="profile-img">
             <h1>Zuzanna Lipecka</h1>
             <p>Certyfikowany Trener Personalny</p>
         </div>
-
-        <div class="content-section">
-            <div class="section">
-                <h2>🏆 Certyfikaty i Kwalifikacje</h2>
-                <div class="certificates-grid">
-                    <div class="certificate-card" onclick="openCertificate('https://static.oferteo.pl/images/portfolio/6732767/576px_s/1730906873358-crop-c373ec1c-4d07-49e0-b2ac-29a537252621.jpeg.jpg')">
-                        <img src="https://static.oferteo.pl/images/portfolio/6732767/576px_s/1730906873358-crop-c373ec1c-4d07-49e0-b2ac-29a537252621.jpeg.jpg" alt="Certyfikat 1" class="certificate-image" onerror="this.src='https://via.placeholder.com/300x400/ff6b6b/ffffff?text=Certyfikat+1'">
-                        <div class="certificate-title">Certyfikat Akademii Trenerów Sportu</div>
-                        <div class="certificate-issuer">Trener Personalny</div>
-                        <div class="certificate-year">2024</div>
-                    </div>
-                    </div>
-                </div>
-            </div>
 
             <div class="section">
                 <h2>📍 Lokalizacja</h2>
@@ -1104,7 +1088,7 @@ Dołącz do mnie i zacznij swoją drogę do lepszego zdrowia, siły i energii. C
                     <div class="schedule-card" onclick="showContactModal('+48 795 110 041')">
                         <div class="schedule-day">🔥 Poniedziałek</div>
                         <div class="schedule-time">6:00 - 21:00</div>
-                        <div class="schedule-desc">Treningi personalne i grupowe dostępne przez cały dzień</div>
+                        <div class="schedule-desc">Treningi personalne</div>
                     </div>
                     <div class="schedule-card" onclick="showContactModal('+48 795 110 041')">
                         <div class="schedule-day">💪 Wtorek</div>
@@ -1114,7 +1098,7 @@ Dołącz do mnie i zacznij swoją drogę do lepszego zdrowia, siły i energii. C
                     <div class="schedule-card" onclick="showContactModal('+48 795 110 041')">
                         <div class="schedule-day">⚡ Środa</div>
                         <div class="schedule-time">6:00 - 21:00</div>
-                        <div class="schedule-desc">Zajęcia grupowe i treningi siłowe</div>
+                        <div class="schedule-desc">Treningi siłowe</div>
                     </div>
                     <div class="schedule-card" onclick="showContactModal('+48 795 110 041')">
                         <div class="schedule-day">🎯 Czwartek</div>
@@ -1134,7 +1118,7 @@ Dołącz do mnie i zacznij swoją drogę do lepszego zdrowia, siły i energii. C
                     <div class="schedule-card" onclick="showContactModal('+48 795 110 041')">
                         <div class="schedule-day">🏖️ Niedziela</div>
                         <div class="schedule-time">Dzień regeneracji</div>
-                        <div class="schedule-desc">Konsultacje online i planowanie diet</div>
+                        <div class="schedule-desc">Konsultacje online </div>
                     </div>
                 </div>
             </div>
@@ -1153,19 +1137,37 @@ Dołącz do mnie i zacznij swoją drogę do lepszego zdrowia, siły i energii. C
                         <div class="opinion-rating">⭐⭐⭐⭐⭐</div>
                     </div>
                     <div class="opinion-card">
-                        <div class="opinion-text">Bardzo polecam. Zuza jest mega ciepłą osobą , podchodzi do mnie indywidualnie, dostosowuje ćwiczenia pod moje możliwości, ale też rozumie gdy czasem nie daję rady. Można jej w pełni zaufać . Uwielbiam nasze treningi! 🥰</div>
+                        <div class="opinion-text">Najlepsza trenerka, z jaką ćwiczyłam – serdecznie polecam!
+Z całego serca dziękuję Pani Zuzannie za nasze wspólne treningi. To nie tylko fantastyczna trenerka, ale też niezwykle skuteczna motywatorka. Nie pozwoli Ci tylko mówić, że „chcesz coś zmienić” – zadba o to, żebyś naprawdę działała.
+Zuzia, mimo młodego wieku, doskonale rozumie potrzeby kobiet 40+, zwłaszcza w okresie okołomenopauzalnym. Wie, co wzmocnić, jak dobrać ćwiczenia i jak zatroszczyć się o ciało i samopoczucie. Dzięki niej odzyskałam energię, lepszą formę i poczucie, że naprawdę robię coś dobrego dla siebie.
+Jeśli szukasz trenerki, która nie tylko poprowadzi Cię profesjonalnie, ale też wesprze i zmotywuje w ważnym momencie życia – lepiej trafić nie mogłaś. Polecam z całego serca!</div>
                         <div class="opinion-author">- Agnieszka K</div>
                         <div class="opinion-rating">⭐⭐⭐⭐⭐</div>
                     </div>
                     <div class="opinion-card">
-                        <div class="opinion-text">Bardzo polecam trenerkę Zuzę! Wkłada w swoją pracę całe serce ♥️- co przekłada się na owocne treningi w niesamowicie przyjaznej i motywującej do działania atmosferze! Dziękuję za wszystko! 💪</div>
-                        <div class="opinion-author">- Julia S</div>
+                        <div class="opinion-text">Polecam z całego serca! ❤️ To trenerka, która nie tylko prowadzi treningi, ale też daje ogrom wsparcia i motywacji. Z pełnym zaangażowaniem podjęła się wyzwania pracy z moją córką z niepełnosprawnością i autyzmem oraz ze mną – kobietą po 40., która chciała odzyskać sprawność i schudnąć. Zawsze uśmiechnięta, cierpliwa i pełna optymizmu – sprawia, że każdy trening to radość i nadzieja na lepsze jutro. 🙏💪 Każde spotkanie to dla nas nie tylko ćwiczenia, ale też dawka pozytywnej energii i wiary! Gorąco polecam każdemu, kto szuka prawdziwej specjalistki z pasją! 💪😊
+</div>
+                        <div class="opinion-author">- Agnieszka K</div>
                         <div class="opinion-rating">⭐⭐⭐⭐⭐</div>
                     </div>
                     <div class="opinion-card">
                         <div class="opinion-text">Zuzia to niesamowita trenerka, która potrafi zarazić pasją do sportu. Jej indywidualne podejście i pozytywna energia sprawiają, że każdy trening to przyjemność. Dzięki niej nie tylko poprawiłam swoją formę, ale też zyskałam ogromną motywację do działania.Potrafi dopasować plan do indywidualnych potrzeb. Ćwiczenia z nią to nie tylko praca nad formą, ale też ogromna dawka pozytywnej energii.</div>
                         <div class="opinion-author">- Nikola G</div>
                         <div class="opinion-rating">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+            </div>
+
+        <div class="content-section">
+            <div class="section">
+                <h2>🏆 Certyfikaty i Kwalifikacje</h2>
+                <div class="certificates-grid">
+                    <div class="certificate-card" onclick="openCertificate('https://github.com/SeN1237/strona-suzi/blob/main/1730906873358-crop-c373ec1c-4d07-49e0-b2ac-29a537252621.jpeg%20(1).jpg?raw=true')">
+    <img src="https://github.com/SeN1237/strona-suzi/blob/main/1730906873358-crop-c373ec1c-4d07-49e0-b2ac-29a537252621.jpeg%20(1).jpg?raw=true" alt="Certyfikat 1" class="certificate-image" onerror="this.src='https://via.placeholder.com/300x400/ff6b6b/ffffff?text=Certyfikat+1'">
+                        <div class="certificate-title">Certyfikat Akademii Trenerów Sportu</div>
+                        <div class="certificate-issuer">Trener Personalny</div>
+                        <div class="certificate-year">2024</div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -1181,7 +1183,7 @@ Dołącz do mnie i zacznij swoją drogę do lepszego zdrowia, siły i energii. C
                     <div class="contact-card">
                         <div class="contact-icon">✉️</div>
                         <strong>Email</strong>
-                        <p>xyz</p>
+                        <p>zuzannalipecka.trener@gmail.com</p>
                     </div>
                     <div class="contact-card">
                         <div class="contact-icon">📍</div>
@@ -1218,7 +1220,7 @@ Dołącz do mnie i zacznij swoją drogę do lepszego zdrowia, siły i energii. C
         <div class="content-section">
             <div class="section">
                 <h2>🏊 O mnie</h2>
-                <p style="color: rgba(255,255,255,0.85); font-size: 1.1em; line-height: 1.8;">Cześć jestem Igor mam 19 lat oraz jestem studentem 2 roku zarządzania w sporcie na wydziale zarządzania Politechniki Bydgoskiej. Od niedawna jestem instruktorem pływania, mam 14 lat doświadczenia w wodzie i tysiące wypływanych godzin oraz kilometrów na basenach pod okiem najlepszych trenerów w Polsce.</p>
+                <p style="color: rgba(255,255,255,0.85); font-size: 1.1em; line-height: 1.8;">Cześć jestem Igor mam 20 lat oraz jestem studentem 3 roku zarządzania w sporcie na wydziale zarządzania Politechniki Bydgoskiej. Jestem instruktorem pływania, mam 15 lat doświadczenia w wodzie i tysiące wypływanych godzin oraz kilometrów na basenach pod okiem najlepszych trenerów w Polsce. Posiadam licencje instruktora pływania pzp.</p>
             </div>
 
             <div class="section">
@@ -1390,7 +1392,7 @@ Dołącz do mnie i zacznij swoją drogę do lepszego zdrowia, siły i energii. C
                     <div class="contact-card">
                         <div class="contact-icon">✉️</div>
                         <strong>Email</strong>
-                        <p>igordzierkaczswim@o2.pl</p>
+                        <p>strefaplywania1@gmail.com</p>
                     </div>
                     <div class="contact-card">
                         <div class="contact-icon">📍</div>
