@@ -1155,6 +1155,50 @@
         object-fit: cover;
     }
 }
+       /* --- Poprawki responsywności strony głównej --- */
+@media (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    .home-page {
+        padding: 30px 10px;
+    }
+
+    .main-title h1 {
+        font-size: 2em;
+        line-height: 1.2;
+    }
+
+    .main-title p {
+        font-size: 1.1em;
+    }
+
+    .cards-container {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        max-width: 100%;
+    }
+
+    .trainer-card {
+        width: 100%;
+        padding: 25px;
+    }
+
+    .trainer-card img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .trainer-card h2 {
+        font-size: 1.5em;
+    }
+
+    .trainer-card p {
+        font-size: 1em;
+    }
+}
+
 </style>
 </head>
 <body>
