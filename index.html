@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forma pod lipą</title>
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Forma pod lipą</title>
+<style>
         * {
             margin: 0;
             padding: 0;
@@ -49,6 +50,7 @@
             align-items: center;
             position: relative;
             overflow: hidden;
+            padding: 50px 0; /* Dodano padding, by formularz miał miejsce */
         }
 
         .home-page::before {
@@ -159,7 +161,7 @@
         .trainer-card p {
             color: #666;
             font-size: 1.2em;
-            font-weight: 500;
+            font-weight: 50s0;
             position: relative;
             z-index: 1;
         }
@@ -228,22 +230,6 @@
             background: linear-gradient(135deg, #00d4ff 0%, #0099ff 50%, #0066cc 100%);
             position: relative;
             overflow: hidden;
-        }
-
-        #igor .profile-header::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path fill="rgba(255,255,255,0.1)" d="M0,50 Q300,20 600,50 T1200,50 L1200,120 L0,120 Z"/></svg>');
-            background-size: 100% 100%;
-            bottom: 0;
-            animation: wave 8s ease-in-out infinite;
-        }
-
-        @keyframes wave {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(-50px); }
         }
 
         @keyframes pulse {
@@ -756,6 +742,35 @@
             border-radius: 10px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.8);
         }
+        
+        /* NOWE STYLE DLA MODALA GALERII */
+        .gallery-modal-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 1200px; /* Większy rozmiar dla zdjęć */
+            height: 100%;
+        }
+
+        .modal-nav-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            font-size: 3em;
+            padding: 15px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            z-index: 2001;
+            border-radius: 50%;
+            line-height: 1;
+            margin: 0 10px;
+        }
+
+        .modal-nav-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
 
         .certificate-modal-close {
             position: absolute;
@@ -772,6 +787,7 @@
             font-weight: bold;
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 2002;
         }
 
         .certificate-modal-close:hover {
@@ -824,6 +840,99 @@
             box-shadow: 0 10px 25px rgba(102, 126, 234, 0.6);
         }
         /* KONIEC NOWYCH STYLI */
+        
+        /* NOWE STYLE DLA GALERII */
+        .gallery-container {
+            position: relative;
+            padding: 20px 0;
+            margin-top: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .gallery-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .gallery-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .gallery-image-card {
+            min-width: 33.333%; /* Trzy zdjęcia w linii, więc każde zajmuje 1/3 */
+            flex-shrink: 0;
+            padding: 0 10px;
+            cursor: pointer;
+            transition: opacity 0.5s ease-in-out, transform 0.3s ease-in-out;
+            text-align: center;
+            position: relative;
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 350px; /* Ujednolicona wysokość */
+            object-fit: cover;
+            border-radius: 15px;
+            border: 5px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: border-color 0.3s;
+        }
+        
+        /* Styl dla aktywnego zdjęcia - pełna jasność i podkreślenie */
+        .gallery-image-card.active .gallery-image {
+            opacity: 1;
+            transform: scale(1.05);
+            border-color: #ffd93d; /* Zuzia */
+            box-shadow: 0 15px 40px rgba(255, 217, 61, 0.3);
+        }
+
+        #igor .gallery-image-card.active .gallery-image {
+            border-color: #00d4ff; /* Igor */
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.3);
+        }
+        
+        /* Styl dla nieaktywnych zdjęć - przyciemnienie */
+        .gallery-image-card:not(.active) .gallery-image {
+            opacity: 0.4;
+            transform: scale(0.9);
+            filter: brightness(0.7);
+        }
+        
+        .gallery-nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 15px 10px;
+            cursor: pointer;
+            font-size: 2em;
+            z-index: 10;
+            border-radius: 10px;
+            transition: background 0.3s, transform 0.3s;
+            line-height: 1;
+        }
+
+        .gallery-nav-button:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .gallery-nav-button.prev {
+            left: 0;
+        }
+
+        .gallery-nav-button.next {
+            right: 0;
+        }
+        /* KONIEC NOWYCH STYLI DLA GALERII */
 
         @media (max-width: 768px) {
             .certificates-grid {
@@ -833,230 +942,271 @@
             .certificate-image {
                 height: 250px;
             }
+            
+            .gallery-image-card {
+                min-width: 100%; /* Jedno zdjęcie na linii na mobilnym */
+                padding: 0 5px;
+            }
+
+            .gallery-image-card.active .gallery-image {
+                transform: scale(1);
+            }
+
+            .gallery-image-card:not(.active) .gallery-image {
+                display: none; /* Ukryj nieaktywne na małych ekranach */
+            }
+
+            .gallery-nav-button {
+                font-size: 1.5em;
+                padding: 10px 5px;
+            }
         }
+        
+        /* STYLY DLA SEKCJI FORMULARZA */
+        .booking-section-container {
+            width: 90%;
+            max-width: 800px; 
+            margin: 80px auto 40px auto; /* Centrowanie kontenera */
+            z-index: 1;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1); 
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+
+        .booking-section-container h2 {
+            color: white;
+            font-size: 2em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .booking-section-container p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 25px;
+            font-size: 1.1em;
+        }
+
+        .form-embed-wrapper {
+            /* To jest kluczowe dla responsywności IFRAME */
+            position: relative;
+            padding-bottom: 150%; /* Ustaw wysokość w stosunku do szerokości (dostosuj, aby cały formularz był widoczny) */
+            height: 0;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            background-color: white; /* Tło dla formularza */
+        }
+
+        .form-embed-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        @media (min-width: 600px) {
+            .form-embed-wrapper {
+                padding-bottom: 100%; /* Zmień proporcje dla szerszych ekranów, jeśli formularz jest krótszy */
+            }
+        }
+        
+        /* STYLY DLA PRZYCISKÓW SOCIAL MEDIA */
         .social-section {
-            margin-top: 50px;
-            padding: 40px;
+            padding: 40px 0;
             text-align: center;
         }
 
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 25px;
+            gap: 20px;
             flex-wrap: wrap;
         }
 
         .social-btn {
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 12px;
-            padding: 18px 35px;
-            text-decoration: none;
+            justify-content: center;
+            padding: 15px 30px;
             border-radius: 50px;
+            text-decoration: none;
+            color: white;
             font-weight: 700;
             font-size: 1.1em;
-            transition: all 0.3s ease;
+            min-width: 180px;
             box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
-        }
-
-        .social-btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.2);
-            transform: translate(-50%, -50%);
-            transition: width 0.5s, height 0.5s;
-        }
-
-        .social-btn:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        .social-btn span {
-            position: relative;
             z-index: 1;
         }
 
+        .social-btn span:first-child {
+            font-size: 1.5em;
+            margin-right: 10px;
+            transition: transform 0.3s ease;
+        }
+
         .social-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
         }
 
+        .social-btn:hover span:first-child {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        /* Facebook - Igor & Zuzia */
         .social-btn.facebook {
-            background: linear-gradient(135deg, #1877f2 0%, #0d5dbf 100%);
-            color: white;
+            background: linear-gradient(135deg, #1877f2 0%, #0c4d9e 100%);
         }
 
+        /* Instagram - Igor & Zuzia */
         .social-btn.instagram {
             background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-            color: white;
         }
 
-        @media (max-width: 768px) {
-            .main-title h1 {
-                font-size: 2.2em;
-            }
-            
-            .cards-container {
-                grid-template-columns: 1fr;
-                gap: 30px;
-                padding: 0 10px;
-            }
-
-            .trainer-card {
-                padding: 30px 20px;
-            }
-
-            .trainer-card img {
-                width: 140px;
-                height: 140px;
-            }
-
-            .schedule-grid,
-            .services-grid,
-            .contact-grid,
-            .locations-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .social-links {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .profile-header h1 {
-                font-size: 2em;
-            }
-
-            .profile-img {
-                width: 150px;
-                height: 150px;
-            }
-
-            .section {
-                padding: 25px 20px;
-                margin-bottom: 20px;
-            }
-
-            .section h2 {
-                font-size: 1.5em;
-            }
-
-            .back-button {
-                padding: 12px 20px;
-                font-size: 15px;
-                top: 15px;
-                left: 15px;
-            }
-
-            .schedule-card,
-            .service-card,
-            .contact-card,
-            .location-card,
-            .certificate-card {
-                padding: 20px;
-            }
-
-            .location-map {
-                height: 200px;
-            }
-
-            .certificate-image {
-                height: 200px;
-            }
-
-            .certificates-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .certificate-modal-close {
-                top: 10px;
-                right: 10px;
-            }
-
-            .social-btn {
-                padding: 15px 25px;
-                font-size: 1em;
-            }
-
-            .container {
-                padding: 15px;
-            }
-
-            .content-section {
-                padding: 30px 15px;
-            }
+        /* Dodatkowy efekt "shimmer" */
+        .social-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 50%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: skewX(-20deg);
+            transition: all 0.7s ease;
+            z-index: -1;
         }
-    </style>
+
+        .social-btn:hover::after {
+            left: 150%;
+        }
+        /* KONIEC STYLI DLA PRZYCISKÓW SOCIAL MEDIA */
+    
+/* GALERIA - poprawki mobilne */
+.gallery-container {
+    flex-direction: column;
+    width: 100%;
+}
+
+.gallery-wrapper {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+}
+
+.gallery-track {
+    display: flex;
+    gap: 10px;
+    scroll-snap-align: start;
+}
+
+.gallery-image-card {
+    flex: 0 0 auto;
+    width: 100%;
+    scroll-snap-align: center;
+}
+
+.gallery-image {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+/* Dla ekranów poniżej 768px */
+@media (max-width: 768px) {
+    .gallery-track {
+        flex-direction: row;
+        overflow-x: scroll;
+    }
+
+    .gallery-image-card {
+        min-width: 90%;
+    }
+
+    .gallery-nav-button {
+        display: none; /* ukryj przyciski na telefonach */
+    }
+}
+
+/* --- Poprawki wyglądu galerii na komputerach --- */
+.gallery-image {
+    width: 100%;
+    height: 250px; /* mniejsze zdjęcia */
+    object-fit: contain; /* całe zdjęcie widoczne */
+    background-color: rgba(255, 255, 255, 0.05); /* tło pod przezroczyste krawędzie */
+    border-radius: 15px;
+    border: 4px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Na telefonach zdjęcia wypełniają ekran */
+@media (max-width: 768px) {
+    .gallery-image {
+        height: auto;
+        max-height: 400px;
+        object-fit: cover;
+    }
+}
+</style>
 </head>
 <body>
-    <div id="home" class="page active">
-        <div class="home-page">
-            <div class="container">
-                <div class="main-title">
-                    <h1>Profesjonalni Trenerzy</h1>
-                    <p>Wybierz swojego trenera i zacznij swoją transformację</p>
-                </div>
-                <div class="cards-container">
-                    <div class="trainer-card" onclick="showPage('zuzia')">
-                        <img src="https://scontent-waw2-1.xx.fbcdn.net/v/t39.30808-6/482302494_122100536714791831_1178986165422981118_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=-Iujxcg0BEkQ7kNvwHTiQ3x&_nc_oc=AdlRywocfsMfYKd8sAqjQc8tlqQE1R3viK-psk5P9XCaFPUCmCS4nd49j-9_sHLmAlw&nc_zt=23&_nc_ht=scontent-waw2-1.xx&_nc_gid=Zrun25ofcn_wujP8INNSUw&oh=00_AfeUVQiudaDcSFJEavChOvtIY0tPBNn17tU4LsbLqrf82A&oe=68F686FF" alt="Zuzanna Lipecka">
-                        <h2>Zuzanna Lipecka</h2>
-                        <p>Trener Personalny</p>
-                    </div>
-                    <div class="trainer-card" onclick="showPage('igor')">
-                        <img src="https://github.com/SeN1237/strona-suzi/blob/main/unnamed.jpg?raw=true" alt="Igor Dzierkacz">
-                        <h2>Igor Dzierkacz</h2>
-                        <p>Szkółka Pływania</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="zuzia" class="page profile-page">
-        <button class="back-button" onclick="showPage('home')">Powrót</button>
-        
-        <div class="profile-header">
-            <img src="https://github.com/SeN1237/strona-suzi/blob/main/IMG_9160.jpg?raw=true" alt="Zuzia Lipecka" class="profile-img">
-            <h1>Zuzanna Lipecka</h1>
-            <p>Certyfikowany Trener Personalny</p>
-        </div>
-
-            <div class="section">
-                <h2>📍 Lokalizacja</h2>
-                <div class="locations-grid">
-                    <div class="location-card">
-                        <div class="location-name">🏋️ iGYM Centrum Sportu</div>
-                        <div class="location-address">📍 Jagiellońska 1, 85-067 Bydgoszcz</div>
-                        <div class="location-hours">
-                            🕐 Pon-Pt: 6:00 - 21:00<br>
-                            🕐 Sobota: 8:00 - 14:00<br>
-                        </div>
-                        <iframe 
-                            class="location-map"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2394.1855947384297!2d18.001391011956983!3d53.124813872110025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47031380fcd8d2df%3A0x78af2bc0272e1556!2siGYM%20Centrum%20Sportu!5e0!3m2!1spl!2spl!4v1760266946858!5m2!1spl!2spl"
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section">
-                <h2>💪 O mnie</h2>
-                <p style="color: rgba(255,255,255,0.85); font-size: 1.1em; line-height: 1.8;">Cześć! 😊 Nazywam się Zuzia i jestem trenerką personalną z 5️⃣-letnim doświadczeniem na siłowni.
-Moja pasja do sportu obejmuje nie tylko treningi siłowe 💪, ale też taniec 💃 – dzięki temu podchodzę do ruchu w sposób wszechstronny i kreatywny.
+<div class="page active" id="home">
+<div class="home-page">
+<div class="container">
+<div class="main-title">
+<h1>Profesjonalni Trenerzy</h1>
+<p>Wybierz swojego trenera i zacznij swoją transformację</p>
+</div>
+<div class="cards-container">
+<div class="trainer-card" onclick="showPage('zuzia')">
+<img alt="Zuzanna Lipecka" src="https://scontent-waw2-1.xx.fbcdn.net/v/t39.30808-6/482302494_122100536714791831_1178986165422981118_n.jpg?_nc_cat=109&amp;ccb=1-7&amp;_nc_sid=6ee11a&amp;_nc_ohc=-Iujxcg0BEkQ7kNvwHTiQ3x&amp;_nc_oc=AdlRywocfsMfYKd8sAqjQc8tlqQE1R3viK-psk5P9XCaFPUCmCS4nd49j-9_sHLmAlw&amp;nc_zt=23&amp;_nc_ht=scontent-waw2-1.xx&amp;_nc_gid=Zrun25ofcn_wujP8INNSUw&amp;oh=00_AfeUVQiudaDcSFJEavChOvtIY0tPBNn17tU4LsbLqrf82A&amp;oe=68F686FF"/>
+<h2>Zuzanna Lipecka</h2>
+<p>Trener Personalny</p>
+</div>
+<div class="trainer-card" onclick="showPage('igor')">
+<img alt="Igor Dzierkacz" src="https://github.com/SeN1237/strona-suzi/blob/main/unnamed.jpg?raw=true"/>
+<h2>Igor Dzierkacz</h2>
+<p>Szkółka Pływania</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="page profile-page" id="zuzia">
+<button class="back-button" onclick="showPage('home')">Powrót</button>
+<div class="profile-header">
+<img alt="Zuzia Lipecka" class="profile-img" src="https://github.com/SeN1237/strona-suzi/blob/main/IMG_9160.jpg?raw=true"/>
+<h1>Zuzanna Lipecka</h1>
+<p>Certyfikowany Trener Personalny</p>
+</div>
+<div class="content-section">
+<div class="section">
+<h2>📍 Lokalizacja</h2>
+<div class="locations-grid">
+<div class="location-card">
+<div class="location-name">🏋️ iGYM Centrum Sportu</div>
+<div class="location-address">📍 Jagiellońska 1, 85-067 Bydgoszcz</div>
+<div class="location-hours">
+                            🕐 Pon-Pt: 6:00 - 21:00<br/>
+                            🕐 Sobota: 8:00 - 14:00<br/>
+</div>
+<iframe allowfullscreen="" class="location-map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2394.1855947384297!2d18.001391011956983!3d53.124813872110025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47031380fcd8d2df%3A0x78af2bc0272e1556!2siGYM%20Centrum%20Sportu!5e0!3m2!1spl!2spl!4v1760266946858!5m2!1spl!2spl" style="border:0;">
+</iframe>
+</div>
+</div>
+</div>
+<div class="section">
+<h2>💪 O mnie</h2>
+<p style="color: rgba(255,255,255,0.85); font-size: 1.1em; line-height: 1.8;">Cześć! 😊 Nazywam się Zuzia i jestem trenerką personalną z 5️⃣-letnim doświadczeniem na siłowni.
+Moja pasja do sportu obejmuje nie tylko treningi siłowe 💪, ale też taniec 💃 – dzięki temu podchodę do ruchu w sposób wszechstronny i kreatywny.
 Studiuję zarządzanie w sporcie 🎓, co daje mi solidne podstawy do skutecznego wspierania moich podopiecznych – nie tylko fizycznie, ale i mentalnie.
 Pomagam budować silne, zdrowe ciało oraz trwałą motywację, dopasowując treningi do indywidualnych potrzeb i celów 🎯.
 Wiem, jak dużą rolę odgrywa odżywianie – dlatego udzielam praktycznych wskazówek i pomagam budować zdrowe nawyki żywieniowe.
@@ -1064,384 +1214,608 @@ Razem zadbamy o Twoją formę i dobre samopoczucie! 🏋️‍♀️😊
 Zapraszam do wspólnych treningów – bez względu na Twój poziom zaawansowania. Stworzymy plan, który będzie realny i skuteczny.
 Razem pokonamy przeszkody i będziemy świętować każdy sukces! 🎉
 Dołącz do mnie i zacznij swoją drogę do lepszego zdrowia, siły i energii. Czekam na Ciebie! 💖</p>
-            </div>
-
-            <div class="section">
-                <h2>🎯 Moje Usługi</h2>
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-icon">🏋️</div>
-                        <strong>Trening Personalny</strong>
-                        <p> </p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon"> 💸</div>
-                        <strong>Ceny:</strong>
-                        <p>Do indywidualnego ustalenia kliknij dnień na harmonogramie aby zadzwonić</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section">
-                <h2>📅 Harmonogram</h2>
-                <div class="schedule-grid">
-                    <div class="schedule-card" onclick="showContactModal('+48 795 110 041')">
-                        <div class="schedule-day">🔥 Poniedziałek</div>
-                        <div class="schedule-time">6:00 - 21:00</div>
-                        <div class="schedule-desc">Treningi personalne</div>
-                    </div>
-                    <div class="schedule-card" onclick="showContactModal('+48 795 110 041')">
-                        <div class="schedule-day">💪 Wtorek</div>
-                        <div class="schedule-time">6:00 - 21:00</div>
-                        <div class="schedule-desc">Sesje indywidualne i treningi funkcjonalne</div>
-                    </div>
-                    <div class="schedule-card" onclick="showContactModal('+48 795 110 041')">
-                        <div class="schedule-day">⚡ Środa</div>
-                        <div class="schedule-time">6:00 - 21:00</div>
-                        <div class="schedule-desc">Treningi siłowe</div>
-                    </div>
-                    <div class="schedule-card" onclick="showContactModal('+48 795 110 041')">
-                        <div class="schedule-day">🎯 Czwartek</div>
-                        <div class="schedule-time">6:00 - 21:00</div>
-                        <div class="schedule-desc">Wszystkie formy treningów dostępne</div>
-                    </div>
-                    <div class="schedule-card" onclick="showContactModal('+48 795 110 041')">
-                        <div class="schedule-day">🔋 Piątek</div>
-                        <div class="schedule-time">6:00 - 21:00</div>
-                        <div class="schedule-desc">Zakończ tydzień intensywnym treningiem!</div>
-                    </div>
-                    <div class="schedule-card" onclick="showContactModal('+48 795 110 041')">
-                        <div class="schedule-day">☀️ Sobota</div>
-                        <div class="schedule-time">8:00 - 14:00</div>
-                        <div class="schedule-desc">Treningi personalne w weekendowej atmosferze</div>
-                    </div>
-                    <div class="schedule-card" onclick="showContactModal('+48 795 110 041')">
-                        <div class="schedule-day">🏖️ Niedziela</div>
-                        <div class="schedule-time">Dzień regeneracji</div>
-                        <div class="schedule-desc">Konsultacje online </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section">
-                <h2>⭐ Opinie Klientów</h2>
-                <div class="opinions-container">
-                    <div class="opinion-card">
-                        <div class="opinion-text">Miałam przyjemność trenować z Zuzią i mogę szczerze powiedzieć, że to najlepsza decyzja, jaką mogłam podjąć. Każdy trening był dopasowany do moich możliwości i celów, a przy tym pełen pozytywnej energii. Zuzia potrafi świetnie zmotywować, ale też zadbać o poprawną technikę i bezpieczeństwo. Dzięki niej zrobiłam ogromne postępy i pokochałam aktywność fizyczną. Polecam każdemu! ❤️🥰</div>
-                        <div class="opinion-author">- Natalia W</div>
-                        <div class="opinion-rating">⭐⭐⭐⭐⭐</div>
-                    </div>
-                    <div class="opinion-card">
-                        <div class="opinion-text">Zuzia jest inspirującą trenerką. Dużo wymaga, a jednocześnie jest uważna na moje potrzeby i czuwa nad tym, żeby ćwiczenia były prawdziwą przyjemnością. Zaraża uśmiechem i pozytywną energią. Pod jej opieką pokonuję swoje ograniczenia i dziwię się, ile potrafię zrobić 🙂 . Nie mogę doczekać się każdego treningu. I, co też ważne, efekty tych treningów widać bardzo szybko! Polecam każdemu - tu i osobiście</div>
-                        <div class="opinion-author">- Marta S</div>
-                        <div class="opinion-rating">⭐⭐⭐⭐⭐</div>
-                    </div>
-                    <div class="opinion-card">
-                        <div class="opinion-text">Najlepsza trenerka, z jaką ćwiczyłam – serdecznie polecam!
+</div>
+<div class="section">
+<h2>🎯 Moje Usługi</h2>
+<div class="services-grid">
+<div class="service-card">
+<div class="service-icon">🏋️</div>
+<strong>Trening Personalny</strong>
+<p> </p>
+</div>
+<div class="service-card">
+<div class="service-icon"> 💸</div>
+<strong>Ceny:</strong>
+<p>Do indywidualnego ustalenia kliknij dnień na harmonogramie aby zadzwonić albo wypełnij formularz</p>
+</div>
+</div>
+</div>
+<div class="section">
+<h2>📅 Harmonogram - kliknij na dzień aby zadzwonić</h2>
+<div class="schedule-grid">
+<div class="schedule-card" onclick="showContactModal('+48 795 110 041')">
+<div class="schedule-day">🔥 Poniedziałek</div>
+<div class="schedule-time">6:00 - 21:00</div>
+<div class="schedule-desc">Treningi personalne</div>
+</div>
+<div class="schedule-card" onclick="showContactModal('+48 795 110 041')">
+<div class="schedule-day">💪 Wtorek</div>
+<div class="schedule-time">6:00 - 21:00</div>
+<div class="schedule-desc">Sesje indywidualne i treningi funkcjonalne</div>
+</div>
+<div class="schedule-card" onclick="showContactModal('+48 795 110 041')">
+<div class="schedule-day">⚡ Środa</div>
+<div class="schedule-time">6:00 - 21:00</div>
+<div class="schedule-desc">Treningi siłowe</div>
+</div>
+<div class="schedule-card" onclick="showContactModal('+48 795 110 041')">
+<div class="schedule-day">🎯 Czwartek</div>
+<div class="schedule-time">6:00 - 21:00</div>
+<div class="schedule-desc">Wszystkie formy treningów dostępne</div>
+</div>
+<div class="schedule-card" onclick="showContactModal('+48 795 110 041')">
+<div class="schedule-day">🔋 Piątek</div>
+<div class="schedule-time">6:00 - 21:00</div>
+<div class="schedule-desc">Zakończ tydzień intensywnym treningiem!</div>
+</div>
+<div class="schedule-card" onclick="showContactModal('+48 795 110 041')">
+<div class="schedule-day">☀️ Sobota</div>
+<div class="schedule-time">8:00 - 14:00</div>
+<div class="schedule-desc">Treningi personalne w weekendowej atmosferze</div>
+</div>
+<div class="schedule-card" onclick="showContactModal('+48 795 110 041')">
+<div class="schedule-day">🏖️ Niedziela</div>
+<div class="schedule-time">Dzień regeneracji</div>
+<div class="schedule-desc">Konsultacje online </div>
+</div>
+</div>
+</div>
+<div class="cards-container">
+</div>
+<div class="booking-section-container">
+<h2>Zapisz się na swoje pierwsze zajęcia!</h2>
+<p>Wypełnij formularz. Skontaktujemy się z Tobą w ciągu 24h, aby potwierdzić termin.</p>
+<div class="form-embed-wrapper">
+<iframe frameborder="0" height="100%" marginheight="0" marginwidth="0" src="http://googleusercontent.com/forms.d/e/1FAIpQLSeRAeJptk1i9kZhtw-xMOpOF4-WzuBb-1BTwl2-_TqaNSgbmQ/viewform?embedded=true" style="border: 0; position: absolute; top: 0; left: 0;" width="100%">
+                        Wczytywanie…
+                    </iframe>
+</div>
+</div>
+<div class="section">
+<h2>⭐ Opinie Klientów</h2>
+<div class="opinions-container">
+<div class="opinion-card">
+<div class="opinion-text">Miałam przyjemność trenować z Zuzią i mogę szczerze powiedzieć, że to najlepsza decyzja, jaką mogłam podjąć. Każdy trening był dopasowany do moich możliwości i celów, a przy tym pełen pozytywnej energii. Zuzia potrafi świetnie zmotywować, ale też zadbać o poprawną technikę i bezpieczeństwo. Dzięki niej zrobiłam ogromne postępy i pokochałam aktywność fizyczną. Polecam każdemu! ❤️🥰</div>
+<div class="opinion-author">- Natalia W</div>
+<div class="opinion-rating">⭐⭐⭐⭐⭐</div>
+</div>
+<div class="opinion-card">
+<div class="opinion-text">Zuzia jest inspirującą trenerką. Dużo wymaga, a jednocześnie jest uważna na moje potrzeby i czuwa nad tym, żeby ćwiczenia były prawdziwą przyjemnością. Zaraża uśmiechem i pozytywną energią. Pod jej opieką pokonuję swoje ograniczenia i dziwię się, ile potrafię zrobić 🙂 . Nie mogę doczekać się każdego treningu. I, co też ważne, efekty tych treningów widać bardzo szybko! Polecam każdemu - tu i osobiście</div>
+<div class="opinion-author">- Marta S</div>
+<div class="opinion-rating">⭐⭐⭐⭐⭐</div>
+</div>
+<div class="opinion-card">
+<div class="opinion-text">Najlepsza trenerka, z jaką ćwiczyłam – serdecznie polecam!
 Z całego serca dziękuję Pani Zuzannie za nasze wspólne treningi. To nie tylko fantastyczna trenerka, ale też niezwykle skuteczna motywatorka. Nie pozwoli Ci tylko mówić, że „chcesz coś zmienić” – zadba o to, żebyś naprawdę działała.
 Zuzia, mimo młodego wieku, doskonale rozumie potrzeby kobiet 40+, zwłaszcza w okresie okołomenopauzalnym. Wie, co wzmocnić, jak dobrać ćwiczenia i jak zatroszczyć się o ciało i samopoczucie. Dzięki niej odzyskałam energię, lepszą formę i poczucie, że naprawdę robię coś dobrego dla siebie.
 Jeśli szukasz trenerki, która nie tylko poprowadzi Cię profesjonalnie, ale też wesprze i zmotywuje w ważnym momencie życia – lepiej trafić nie mogłaś. Polecam z całego serca!</div>
-                        <div class="opinion-author">- Agnieszka K</div>
-                        <div class="opinion-rating">⭐⭐⭐⭐⭐</div>
-                    </div>
-                    <div class="opinion-card">
-                        <div class="opinion-text">Polecam z całego serca! ❤️ To trenerka, która nie tylko prowadzi treningi, ale też daje ogrom wsparcia i motywacji. Z pełnym zaangażowaniem podjęła się wyzwania pracy z moją córką z niepełnosprawnością i autyzmem oraz ze mną – kobietą po 40., która chciała odzyskać sprawność i schudnąć. Zawsze uśmiechnięta, cierpliwa i pełna optymizmu – sprawia, że każdy trening to radość i nadzieja na lepsze jutro. 🙏💪 Każde spotkanie to dla nas nie tylko ćwiczenia, ale też dawka pozytywnej energii i wiary! Gorąco polecam każdemu, kto szuka prawdziwej specjalistki z pasją! 💪😊
+<div class="opinion-author">- Agnieszka K</div>
+<div class="opinion-rating">⭐⭐⭐⭐⭐</div>
 </div>
-                        <div class="opinion-author">- Agnieszka K</div>
-                        <div class="opinion-rating">⭐⭐⭐⭐⭐</div>
-                    </div>
-                    <div class="opinion-card">
-                        <div class="opinion-text">Zuzia to niesamowita trenerka, która potrafi zarazić pasją do sportu. Jej indywidualne podejście i pozytywna energia sprawiają, że każdy trening to przyjemność. Dzięki niej nie tylko poprawiłam swoją formę, ale też zyskałam ogromną motywację do działania.Potrafi dopasować plan do indywidualnych potrzeb. Ćwiczenia z nią to nie tylko praca nad formą, ale też ogromna dawka pozytywnej energii.</div>
-                        <div class="opinion-author">- Nikola G</div>
-                        <div class="opinion-rating">⭐⭐⭐⭐⭐</div>
-                    </div>
-                </div>
-            </div>
-
-        <div class="content-section">
-            <div class="section">
-                <h2>🏆 Certyfikaty i Kwalifikacje</h2>
-                <div class="certificates-grid">
-                    <div class="certificate-card" onclick="openCertificate('https://github.com/SeN1237/strona-suzi/blob/main/1730906873358-crop-c373ec1c-4d07-49e0-b2ac-29a537252621.jpeg%20(1).jpg?raw=true')">
-    <img src="https://github.com/SeN1237/strona-suzi/blob/main/1730906873358-crop-c373ec1c-4d07-49e0-b2ac-29a537252621.jpeg%20(1).jpg?raw=true" alt="Certyfikat 1" class="certificate-image" onerror="this.src='https://via.placeholder.com/300x400/ff6b6b/ffffff?text=Certyfikat+1'">
-                        <div class="certificate-title">Certyfikat Akademii Trenerów Sportu</div>
-                        <div class="certificate-issuer">Trener Personalny</div>
-                        <div class="certificate-year">2024</div>
-                    </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section">
-                <h2>📞 Kontakt</h2>
-                <div class="contact-grid">
-                    <div class="contact-card">
-                        <div class="contact-icon">📱</div>
-                        <strong>Telefon</strong>
-                        <p>+48 795 110 041</p>
-                    </div>
-                    <div class="contact-card">
-                        <div class="contact-icon">✉️</div>
-                        <strong>Email</strong>
-                        <p>zuzannalipecka.trener@gmail.com</p>
-                    </div>
-                    <div class="contact-card">
-                        <div class="contact-icon">📍</div>
-                        <strong>Lokalizacja</strong>
-                        <p>Bydgoszcz, Kujawsko-Pomorskie</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="social-section">
-                <div class="social-links">
-                    <a href="https://www.facebook.com/p/Zuzia-Lipecka-Trener-Personalny-61573754944899/" target="_blank" class="social-btn facebook">
-                        <span>📘</span>
-                        <span>Facebook</span>
-                    </a>
-                    <a href="https://www.instagram.com/forma_pod_lipa/?g=5" target="_blank" class="social-btn instagram">
-                        <span>📸</span>
-                        <span>Instagram</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="igor" class="page profile-page">
-        <button class="back-button" onclick="showPage('home')">Powrót</button>
-        
-        <div class="profile-header">
-            <img src="https://static.oferteo.pl/images/portfolio/6732784/256px_s/1737451573841-1737451572300_avatar.jpg" alt="Igor Dzierkacz" class="profile-img">
-            <h1>Igor Dzierkacz</h1>
-            <p>Profesjonalna Szkółka Pływania</p>
-        </div>
-
-        <div class="content-section">
-            <div class="section">
-                <h2>🏊 O mnie</h2>
-                <p style="color: rgba(255,255,255,0.85); font-size: 1.1em; line-height: 1.8;">Cześć jestem Igor mam 20 lat oraz jestem studentem 3 roku zarządzania w sporcie na wydziale zarządzania Politechniki Bydgoskiej. Jestem instruktorem pływania, mam 15 lat doświadczenia w wodzie i tysiące wypływanych godzin oraz kilometrów na basenach pod okiem najlepszych trenerów w Polsce. Posiadam licencje instruktora pływania pzp.</p>
-            </div>
-
-            <div class="section">
-                <h2>🎯 Moje Usługi</h2>
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-icon">👶</div>
-                        <strong>Nauka dla Dzieci</strong>
-                        <p>Zabawy w wodzie i nauka pływania dla najmłodszych od 5 lat</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">🏊‍♂️</div>
-                        <strong>Lekcje dla Dorosłych</strong>
-                        <p>Indywidualne i grupowe lekcje - od podstaw do zaawansowanych</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">⚡</div>
-                        <strong>Doskonalenie Techniki</strong>
-                        <p>Udoskonalenie stylu w dowolnym, grzbietowym, klasycznym lub motylkowym</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">🏆</div>
-                        <strong>Przygotowanie do Zawodów</strong>
-                        <p>Zaawansowane treningi dla przyszłych zawodników</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section">
-                <h2>📅 Harmonogram - kliknij na dzień aby zadzwonić</h2>
-                <div class="schedule-grid">
-                    <div class="schedule-card" onclick="showContactModal('+48 530 139 902')">
-                        <div class="schedule-day">🌊 Poniedziałek - Basen Neptun</div>
-                        <div class="schedule-time">20:00</div>
-                        <div class="schedule-desc">Podstawy</div>
-                        <div class="schedule-time">20:45</div>
-                        <div class="schedule-desc">Zajęcia indywidualne</div>
-                    </div>
-                    <div class="schedule-card" onclick="showContactModal('+48 530 139 902')">
-                        <div class="schedule-day">💧 Wtorek - Basen Neptun</div>
-                        <div class="schedule-time">19:00</div>
-                        <div class="schedule-desc">Kraul/zaawansowani</div>
-                        <div class="schedule-time">20:00</div>
-                        <div class="schedule-desc">Podstawy/Grzbiet</div>
-                        <div class="schedule-time">20:45</div>
-                        <div class="schedule-desc">Indywidualne</div>
-                    </div>
-                    <div class="schedule-card" onclick="showContactModal('+48 530 139 902')">
-                        <div class="schedule-day">🏊 Środa - Basen neptun</div>
-                        <div class="schedule-time">19:00</div>
-                        <div class="schedule-desc">Zajęcia dla dzieci</div>
-                        <div class="schedule-time">20:00</div>
-                        <div class="schedule-desc">Podstawy/Kraul i Grzbiet</div>
-                        <div class="schedule-time">20:45</div>
-                        <div class="schedule-desc">Indywidualne</div>
-                    </div>
-                    <div class="schedule-card" onclick="showContactModal('+48 530 139 902')">
-                        <div class="schedule-day">💙 Czwartek - Basen Laguna</div>
-                        <div class="schedule-time">19:00</div>
-                        <div class="schedule-desc">Zajęcia dla dzieci</div>
-                        <div class="schedule-time">20:00</div>
-                        <div class="schedule-desc">Kraul/zaawansowani</div>
-                        <div class="schedule-time">20:45</div>
-                        <div class="schedule-desc">Indywidualne</div>
-                    </div>
-                    <div class="schedule-card" onclick="showContactModal('+48 530 139 902')">
-                        <div class="schedule-day">☀️ Sobota</div>
-                        <div class="schedule-time">11:00</div>
-                        <div class="schedule-desc">Zajęcia dla dzieci</div>
-                        <div class="schedule-time">12:00</div>
-                        <div class="schedule-desc">+12/ dorośli podstawy</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section">
-                <h2>📍 Lokalizacje</h2>
-                <div class="locations-grid">
-                    <div class="location-card">
-                        <div class="location-name">🏊 PŁYWALNIA NEPTUN</div>
-                        <div class="location-address">📍 ul. Swarzewska 10, Bydgoszcz</div>
-                        <div class="location-hours">
-                            🕐 Pon, Śr, Pt: 15:00 - 20:00<br>
+<div class="opinion-card">
+<div class="opinion-text">Polecam z całego serca! ❤️ To trenerka, która nie tylko prowadzi treningi, ale też daje ogrom wsparcia i motywacji. Z pełnym zaangażowaniem podjęła się wyzwania pracy z moją córką z niepełnosprawnością i autyzmem oraz ze mną – kobietą po 40., która chciała odzyskać sprawność i schudnąć. Zawsze uśmiechnięta, cierpliwa i pełna optymizmu – sprawia, że każdy trening to radość i nadzieja na lepsze jutro. 🙏💪 Każde spotkanie to dla nas nie tylko ćwiczenia, ale też dawka pozytywnej energii i wiary! Gorąco polecam każdemu, kto szuka prawdziwej specjalistki z pasją! 💪😊
+</div>
+<div class="opinion-author">- Agnieszka K</div>
+<div class="opinion-rating">⭐⭐⭐⭐⭐</div>
+</div>
+<div class="opinion-card">
+<div class="opinion-text">Zuzia to niesamowita trenerka, która potrafi zarazić pasją do sportu. Jej indywidualne podejście i pozytywna energia sprawiają, że każdy trening to przyjemność. Dzięki niej nie tylko poprawiłam swoją formę, ale też zyskałam ogromną motywację do działania.Potrafi dopasować plan do indywidualnych potrzeb. Ćwiczenia z nią to nie tylko praca nad formą, ale też ogromna dawka pozytywnej energii.</div>
+<div class="opinion-author">- Nikola G</div>
+<div class="opinion-rating">⭐⭐⭐⭐⭐</div>
+</div>
+</div>
+</div>
+<div class="section">
+<h2>🏆 Certyfikaty i Kwalifikacje</h2>
+<div class="certificates-grid">
+<div class="certificate-card" onclick="openCertificate('https://github.com/SeN1237/strona-suzi/blob/main/1730906873358-crop-c373ec1c-4d07-49e0-b2ac-29a537252621.jpeg%20(1).jpg?raw=true')">
+<img alt="Certyfikat 1" class="certificate-image" onerror="this.src='https://via.placeholder.com/300x400/ff6b6b/ffffff?text=Certyfikat+1'" src="https://github.com/SeN1237/strona-suzi/blob/main/1730906873358-crop-c373ec1c-4d07-49e0-b2ac-29a537252621.jpeg%20(1).jpg?raw=true"/>
+<div class="certificate-title">Certyfikat Akademii Trenerów Sportu</div>
+<div class="certificate-issuer">Trener Personalny</div>
+<div class="certificate-year">2024</div>
+</div>
+</div>
+</div>
+<div class="section">
+<h2>📸 Galeria Zdjęć</h2>
+<div class="gallery-container">
+<button class="gallery-nav-button prev" onclick="navigateGallery('zuziaGallery', -1)">❮</button>
+<div class="gallery-wrapper">
+<div class="gallery-track" id="zuziaGallery">
+</div>
+</div>
+<button class="gallery-nav-button next" onclick="navigateGallery('zuziaGallery', 1)">❯</button>
+</div>
+</div><div class="section">
+<h2>📞 Kontakt</h2>
+<div class="contact-grid">
+<div class="contact-card">
+<div class="contact-icon">📱</div>
+<strong>Telefon</strong>
+<p>+48 795 110 041</p>
+</div>
+<div class="contact-card">
+<div class="contact-icon">✉️</div>
+<strong>Email</strong>
+<p>zuzannalipecka.trener@gmail.com</p>
+</div>
+<div class="contact-card">
+<div class="contact-icon">📍</div>
+<strong>Lokalizacja</strong>
+<p>Bydgoszcz, Kujawsko-Pomorskie</p>
+</div>
+</div>
+</div>
+<div class="social-section">
+<div class="social-links">
+<a class="social-btn facebook" href="https://www.facebook.com/p/Zuzia-Lipecka-Trener-Personalny-61573754944899/" target="_blank">
+<span>📘</span>
+<span>Facebook</span>
+</a>
+<a class="social-btn instagram" href="https://www.instagram.com/forma_pod_lipa/?g=5" target="_blank">
+<span>📸</span>
+<span>Instagram</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="page profile-page" id="igor">
+<button class="back-button" onclick="showPage('home')">Powrót</button>
+<div class="profile-header">
+<img alt="Igor Dzierkacz" class="profile-img" src="https://static.oferteo.pl/images/portfolio/6732784/256px_s/1737451573841-1737451572300_avatar.jpg"/>
+<h1>Igor Dzierkacz</h1>
+<p>Profesjonalna Szkółka Pływania</p>
+</div>
+<div class="content-section">
+<div class="section">
+<h2>🏊 O mnie</h2>
+<p style="color: rgba(255,255,255,0.85); font-size: 1.1em; line-height: 1.8;">Cześć jestem Igor mam 20 lat oraz jestem studentem 3 roku zarządzania w sporcie na wydziale zarządzania Politechniki Bydgoskiej. Jestem instruktorem pływania, mam 15 lat doświadczenia w wodzie i tysiące wypływanych godzin oraz kilometrów na basenach pod okiem najlepszych trenerów w Polsce. Posiadam licencje instruktora pływania pzp.</p>
+</div>
+<div class="section">
+<h2>🎯 Moje Usługi</h2>
+<div class="services-grid">
+<div class="service-card">
+<div class="service-icon">👶</div>
+<strong>Nauka dla Dzieci</strong>
+<p>Zabawy w wodzie i nauka pływania dla najmłodszych od 5 lat</p>
+</div>
+<div class="service-card">
+<div class="service-icon">🏊‍♂️</div>
+<strong>Lekcje dla Dorosłych</strong>
+<p>Indywidualne i grupowe lekcje - od podstaw do zaawansowanych</p>
+</div>
+<div class="service-card">
+<div class="service-icon">⚡</div>
+<strong>Doskonalenie Techniki</strong>
+<p>Udoskonalenie stylu w dowolnym, grzbietowym, klasycznym lub motylkowym</p>
+</div>
+<div class="service-card">
+<div class="service-icon">🏆</div>
+<strong>Przygotowanie do Zawodów</strong>
+<p>Zaawansowane treningi dla przyszłych zawodników</p>
+</div>
+</div>
+</div>
+<div class="section">
+<h2>📅 Harmonogram - kliknij na dzień aby zadzwonić</h2>
+<div class="schedule-grid">
+<div class="schedule-card" onclick="showContactModal('+48 530 139 902')">
+<div class="schedule-day">🌊 Poniedziałek - Basen Neptun</div>
+<div class="schedule-time">20:00</div>
+<div class="schedule-desc">Podstawy</div>
+<div class="schedule-time">20:45</div>
+<div class="schedule-desc">Zajęcia indywidualne</div>
+</div>
+<div class="schedule-card" onclick="showContactModal('+48 530 139 902')">
+<div class="schedule-day">💧 Wtorek - Basen Neptun</div>
+<div class="schedule-time">19:00</div>
+<div class="schedule-desc">Kraul/zaawansowani</div>
+<div class="schedule-time">20:00</div>
+<div class="schedule-desc">Podstawy/Grzbiet</div>
+<div class="schedule-time">20:45</div>
+<div class="schedule-desc">Indywidualne</div>
+</div>
+<div class="schedule-card" onclick="showContactModal('+48 530 139 902')">
+<div class="schedule-day">🏊 Środa - Basen neptun</div>
+<div class="schedule-time">19:00</div>
+<div class="schedule-desc">Zajęcia dla dzieci</div>
+<div class="schedule-time">20:00</div>
+<div class="schedule-desc">Podstawy/Kraul i Grzbiet</div>
+<div class="schedule-time">20:45</div>
+<div class="schedule-desc">Indywidualne</div>
+</div>
+<div class="schedule-card" onclick="showContactModal('+48 530 139 902')">
+<div class="schedule-day">💙 Czwartek - Basen Laguna</div>
+<div class="schedule-time">19:00</div>
+<div class="schedule-desc">Zajęcia dla dzieci</div>
+<div class="schedule-time">20:00</div>
+<div class="schedule-desc">Kraul/zaawansowani</div>
+<div class="schedule-time">20:45</div>
+<div class="schedule-desc">Indywidualne</div>
+</div>
+<div class="schedule-card" onclick="showContactModal('+48 530 139 902')">
+<div class="schedule-day">☀️ Sobota - basen UKW </div>
+<div class="schedule-time">11:00</div>
+<div class="schedule-desc">Zajęcia dla dzieci</div>
+<div class="schedule-time">12:00</div>
+<div class="schedule-desc">+12/ dorośli podstawy</div>
+</div>
+</div>
+</div>
+<div class="cards-container">
+</div>
+<div class="booking-section-container">
+<h2>Zapisz się na swoje pierwsze zajęcia!</h2>
+<p>Wypełnij formularz. Skontaktujemy się z Tobą w ciągu 24h, aby potwierdzić termin.</p>
+<div class="form-embed-wrapper">
+<iframe frameborder="0" height="100%" marginheight="0" marginwidth="0" src="http://googleusercontent.com/forms.d/e/1FAIpQLSeRAeJptk1i9kZhtw-xMOpOF4-WzuBb-1BTwl2-_TqaNSgbmQ/viewform?embedded=true" style="border: 0; position: absolute; top: 0; left: 0;" width="100%">
+</iframe>
+</div>
+</div>
+<div class="section">
+<h2>📍 Lokalizacje</h2>
+<div class="locations-grid">
+<div class="location-card">
+<div class="location-name">🏊 PŁYWALNIA NEPTUN</div>
+<div class="location-address">📍 ul. Swarzewska 10, Bydgoszcz</div>
+<div class="location-hours">
+                            🕐 Pon, Śr, Pt: 15:00 - 20:00<br/>
                             🕐 Sobota: 9:00 - 15:00
                         </div>
-                        <iframe 
-                            class="location-map"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d38306.9759042247!2d17.962675252431687!3d53.12480670436755!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4703147546e28b75%3A0xb181c1cbf8089438!2sP%C5%81YWALNIA%20NEPTUN!5e0!3m2!1spl!2spl!4v1760267061113!5m2!1spl!2spl"
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
-                    </div>
-                    <div class="location-card">
-                        <div class="location-name">🏊 Basen Laguna</div>
-                        <div class="location-address">📍 Glinki 117, 85-861 Bydgoszcz</div>
-                        <div class="location-hours">
-                            🕐 Wt, Czw: 17:00 - 21:00<br>
+<iframe allowfullscreen="" class="location-map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d38306.9759042247!2d17.962675252431687!3d53.12480670436755!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4703147546e28b75%3A0xb181c1cbf8089438!2sP%C5%81YWALNIA%20NEPTUN!5e0!3m2!1spl!2spl!4v1760267061113!5m2!1spl!2spl" style="border:0;">
+</iframe>
+</div>
+<div class="location-card">
+<div class="location-name">🏊 Basen Laguna</div>
+<div class="location-address">📍 Glinki 117, 85-861 Bydgoszcz</div>
+<div class="location-hours">
+                            🕐 Wt, Czw: 17:00 - 21:00<br/>
                             🕐 Niedziela: 10:00 - 13:00
                         </div>
-                        <iframe 
-                            class="location-map"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2395.5113394005916!2d18.033187911955384!3d53.10101057210327!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47031480c79dcead%3A0xe6f405fe268eb137!2sBasen%20Laguna!5e0!3m2!1spl!2spl!4v1760267101126!5m2!1spl!2spl"
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
-                    </div>
-                    <div class="location-card">
-                        <div class="location-name">🏊 Centrum Edukacji Kultury Fizycznej i Sportu, Uniwersytet Kazimierza Wielkiego</div>
-                        <div class="location-address">📍 Sportowa 2, 85-091 Bydgoszcz</div>
-                        <div class="location-hours">
-                            🕐 Pon-Pt: 16:00 - 19:00<br>
+<iframe allowfullscreen="" class="location-map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2395.5113394005916!2d18.033187911955384!3d53.10101057210327!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47031480c79dcead%3A0xe6f405fe268eb137!2sBasen%20Laguna!5e0!3m2!1spl!2spl!4v1760267101126!5m2!1spl!2spl" style="border:0;">
+</iframe>
+</div>
+<div class="location-card">
+<div class="location-name">🏊 Centrum Edukacji Kultury Fizycznej i Sportu, Uniwersytet Kazimierza Wielkiego</div>
+<div class="location-address">📍 Sportowa 2, 85-091 Bydgoszcz</div>
+<div class="location-hours">
+                            🕐 Pon-Pt: 16:00 - 19:00<br/>
                             🕐 Sobota: 10:00 - 14:00
                         </div>
-                        <iframe 
-                            class="location-map"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2394.128090577667!2d18.02371301195709!3d53.125846172110286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470313ed33bc53f7%3A0xeb6dc11aa38e61ba!2sCentrum%20Edukacji%20Kultury%20Fizycznej%20i%20Sportu%2C%20Uniwersytet%20Kazimierza%20Wielkiego!5e0!3m2!1spl!2spl!4v1760267133981!5m2!1spl!2spl"
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
-                    </div>
+<iframe allowfullscreen="" class="location-map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2394.128090577667!2d18.02371301195709!3d53.125846172110286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470313ed33bc53f7%3A0xeb6dc11aa38e61ba!2sCentrum%20Edukacji%20Kultury%20Fizycznej%20i%20Sportu%2C%20Uniwersytet%20Kazimierza%20Wielkiego!5e0!3m2!1spl!2spl!4v1760267133981!5m2!1spl!2spl" style="border:0;">
+</iframe>
+</div>
+</div>
+</div>
+<div class="section">
+<h2>⭐ Opinie Klientów</h2>
+<div class="opinions-container">
+<div class="opinion-card">
+<div class="opinion-text">Bardzo fajny kurs.Igor jest bardzo kompetentny oraz  ma super kontakt z dziećmi. Córka zadowolona i chętna do dalszej nauki pływania z trenerem Igorem. Polecam</div>
+<div class="opinion-author">- Bartłomiej G</div>
+<div class="opinion-rating">⭐⭐⭐⭐⭐</div>
+</div>
+<div class="opinion-card">
+<div class="opinion-text">Dzięki zajęciom z Igorem syn nabrał pewności siebie w wodzie. Podjął pierwsze kroki samodzielnego pływania. Kolejnym atutem było to, że w trakcie zajęć w wodzie był instruktor.  Dzięki temu dzieci czuły się pewniej i bezpieczniej. Jednym słowem: polecam.</div>
+<div class="opinion-author">- Magda L</div>
+<div class="opinion-rating">⭐⭐⭐⭐⭐</div>
+</div>
+<div class="opinion-card">
+<div class="opinion-text">Nasza córka uwielbia zajęcia na basenie, trener Igor ma bardzo dobre podejście do dzieci. Polecamy !</div>
+<div class="opinion-author">- Karol J</div>
+<div class="opinion-rating">⭐⭐⭐⭐⭐</div>
+</div>
+<div class="opinion-card">
+<div class="opinion-text">Serdecznie polecamy Igora oraz innych instruktorów, dziękujemy za świetne podejście do dzieci nawet tych opornych i dużo cierpliwości 🙂</div>
+<div class="opinion-author">- Natalia S</div>
+<div class="opinion-rating">⭐⭐⭐⭐⭐</div>
+</div>
+<div class="opinion-card">
+<div class="opinion-text">Bardzo polecam Igora! Przemiły człowiek z cierpliwością i fajnym podejściem do dzieci. Mój pięciolatek uwielbia zajęcia z trenerem 😃 zajęcia to czysta nauka połączona z zabawą dla dzieci. SUPER! ❤️</div>
+<div class="opinion-author">- Kasia L</div>
+<div class="opinion-rating">⭐⭐⭐⭐⭐</div>
+</div>
+</div>
+</div>
+<div class="section">
+<h2>📸 Galeria Zdjęć</h2>
+<div class="gallery-container">
+<button class="gallery-nav-button prev" onclick="navigateGallery('igorGallery', -1)">❮</button>
+<div class="gallery-wrapper">
+<div class="gallery-track" id="igorGallery">
+</div>
+</div>
+<button class="gallery-nav-button next" onclick="navigateGallery('igorGallery', 1)">❯</button>
+</div>
+</div><div class="section">
+<h2>📞 Kontakt</h2>
+<div class="contact-grid">
+<div class="contact-card">
+<div class="contact-icon">📱</div>
+<strong>Telefon</strong>
+<p>+48 530 139 902</p>
+</div>
+<div class="contact-card">
+<div class="contact-icon">✉️</div>
+<strong>Email</strong>
+<p>strefaplywania1@gmail.com</p>
+</div>
+<div class="contact-card">
+<div class="contact-icon">📍</div>
+<strong>Główna Lokalizacja</strong>
+<p>PŁYWALNIA NEPTUN, Bydgoszcz</p>
+</div>
+</div>
+</div>
+<div class="social-section">
+<div class="social-links">
+<a class="social-btn facebook" href="https://www.facebook.com/p/Igor-Dzierkacz-61566269692729/" target="_blank">
+<span>📘</span>
+<span>Facebook</span>
+</a>
+<a class="social-btn instagram" href="https://www.instagram.com/igor_dzierkacz/" target="_blank">
+<span>📸</span>
+<span>Instagram</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="certificate-modal" id="certificateModal" onclick="closeCertificate()">
+<div class="certificate-modal-content" onclick="event.stopPropagation()">
+<button class="certificate-modal-close" onclick="closeCertificate()">×</button>
+<img alt="Certyfikat" class="certificate-modal-image" id="certificateModalImage" src=""/>
+</div>
+</div>
+<div class="certificate-modal" id="galleryModal" onclick="closeGalleryModal()">
+<div class="certificate-modal-content gallery-modal-content" onclick="event.stopPropagation()">
+<button class="certificate-modal-close" onclick="closeGalleryModal()">×</button>
+<button class="modal-nav-btn prev" onclick="navigateModal(-1)">❮</button>
+<img alt="Galeria" class="certificate-modal-image" id="galleryModalImage" src=""/>
+<button class="modal-nav-btn next" onclick="navigateModal(1)">❯</button>
+</div>
+</div>
+<div class="certificate-modal" id="contactModal" onclick="closeContactModal()">
+<div class="certificate-modal-content contact-modal-content" onclick="event.stopPropagation()">
+<button class="certificate-modal-close" onclick="closeContactModal()">×</button>
+<div class="contact-modal-body">
+<div class="contact-icon">☎️</div>
+<strong>Skontaktuj się:</strong>
+<p id="modalPhoneNumber"></p>
+<a class="call-btn" href="#" id="modalPhoneLink">Zadzwoń teraz</a>
+</div>
+</div>
+</div>
+<script>
+        // Dane do galerii
+        const zuziaImages = [
+            "https://github.com/SeN1237/strona-suzi/blob/main/zdjecia%20strona%20zuzia/1730906803766-crop-img-5693.jpeg.jpg?raw=true",
+            "https://github.com/SeN1237/strona-suzi/blob/main/zdjecia%20strona%20zuzia/481698972_122100537470791831_3825275172158542252_n.jpg?raw=true",
+            "https://github.com/SeN1237/strona-suzi/blob/main/zdjecia%20strona%20zuzia/481897168_122103141428791831_3318896556873482917_n.jpg?raw=true",
+            "https://github.com/SeN1237/strona-suzi/blob/main/zdjecia%20strona%20zuzia/481963000_122103141470791831_3195555268714559657_n.jpg?raw=true",
+            "https://github.com/SeN1237/strona-suzi/blob/main/zdjecia%20strona%20zuzia/482302494_122100536714791831_1178986165422981118_n.jpg?raw=true"
+        ];
+        
+        const igorImages = [
+            "https://github.com/SeN1237/strona-suzi/blob/main/zdj%C4%99cia%20strona%20igor/481829060_122138668196542323_2325444580052993543_n.jpg?raw=true",
+            "https://github.com/SeN1237/strona-suzi/blob/main/zdj%C4%99cia%20strona%20igor/480680749_122138668208542323_3992018175136355889_n.jpg?raw=true",
+            "https://github.com/SeN1237/strona-suzi/blob/main/zdj%C4%99cia%20strona%20igor/480748889_122138668202542323_1043366118471784853_n.jpg?raw=true",
+            "https://github.com/SeN1237/strona-suzi/blob/main/zdj%C4%99cia%20strona%20igor/481271721_122138668328542323_4239850225025826672_n.jpg?raw=true",
+            "https://github.com/SeN1237/strona-suzi/blob/main/zdj%C4%99cia%20strona%20igor/480835563_122138668340542323_2778256980560072604_n.jpg?raw=true",
+            "https://github.com/SeN1237/strona-suzi/blob/main/zdj%C4%99cia%20strona%20igor/481777801_122138668334542323_208716444258873239_n.jpg?raw=true",
+            "https://github.com/SeN1237/strona-suzi/blob/main/zdj%C4%99cia%20strona%20igor/480773489_122138668430542323_5496586375311631083_n.jpg?raw=true",
+            "https://github.com/SeN1237/strona-suzi/blob/main/zdj%C4%99cia%20strona%20igor/318022817_666081938339761_8618237602247997494_n.jpg.raw=true"
+        ];
+        
+        let currentZuziaIndex = 0;
+        let currentIgorIndex = 0;
+        let activeModalImages = []; // Tablica zdjęć dla aktywnego modala
+        let activeModalIndex = 0; // Indeks zdjęcia w modal
+        let isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+        // Inicjalizacja galerii
+        document.addEventListener('DOMContentLoaded', () => {
+            initGallery('zuziaGallery', zuziaImages, 'zuzia');
+            initGallery('igorGallery', igorImages, 'igor');
+        });
+
+        // Tworzenie kart zdjęć w galerii
+        function initGallery(containerId, imagesArray, trainerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            container.innerHTML = imagesArray.map((url, index) => `
+                <div class="gallery-image-card" data-index="${index}" onclick="openGalleryModal('${trainerId}', ${index})">
+                    <img src="${url}" alt="Zdjęcie ${index + 1}" class="gallery-image" loading="lazy">
                 </div>
-            </div>
+            `).join('');
+            
+            // Inicjalne ustawienie
+            updateGallery(containerId, 0, imagesArray.length);
 
-            <div class="section">
-                <h2>⭐ Opinie Klientów</h2>
-                <div class="opinions-container">
-                    <div class="opinion-card">
-                        <div class="opinion-text">Bardzo fajny kurs.Igor jest bardzo kompetentny oraz  ma super kontakt z dziećmi. Córka zadowolona i chętna do dalszej nauki pływania z trenerem Igorem. Polecam</div>
-                        <div class="opinion-author">- Bartłomiej G</div>
-                        <div class="opinion-rating">⭐⭐⭐⭐⭐</div>
-                    </div>
-                    <div class="opinion-card">
-                        <div class="opinion-text">Dzięki zajęciom z Igorem syn nabrał pewności siebie w wodzie. Podjął pierwsze kroki samodzielnego pływania. Kolejnym atutem było to, że w trakcie zajęć w wodzie był instruktor.  Dzięki temu dzieci czuły się pewniej i bezpieczniej. Jednym słowem: polecam.</div>
-                        <div class="opinion-author">- Magda L</div>
-                        <div class="opinion-rating">⭐⭐⭐⭐⭐</div>
-                    </div>
-                    <div class="opinion-card">
-                        <div class="opinion-text">Nasza córka uwielbia zajęcia na basenie, trener Igor ma bardzo dobre podejście do dzieci. Polecamy !</div>
-                        <div class="opinion-author">- Karol J</div>
-                        <div class="opinion-rating">⭐⭐⭐⭐⭐</div>
-                    </div>
-                    <div class="opinion-card">
-                        <div class="opinion-text">Serdecznie polecamy Igora oraz innych instruktorów, dziękujemy za świetne podejście do dzieci nawet tych opornych i dużo cierpliwości 🙂</div>
-                        <div class="opinion-author">- Natalia S</div>
-                        <div class="opinion-rating">⭐⭐⭐⭐⭐</div>
-                    </div>
-                    <div class="opinion-card">
-                        <div class="opinion-text">Bardzo polecam Igora! Przemiły człowiek z cierpliwością i fajnym podejściem do dzieci. Mój pięciolatek uwielbia zajęcia z trenerem 😃 zajęcia to czysta nauka połączona z zabawą dla dzieci. SUPER! ❤️</div>
-                        <div class="opinion-author">- Kasia L</div>
-                        <div class="opinion-rating">⭐⭐⭐⭐⭐</div>
-                    </div>
-                </div>
-            </div>
+            // Aktualizacja na zmianę rozmiaru (dla responsywności)
+            window.addEventListener('resize', () => {
+                isMobile = window.matchMedia("(max-width: 768px)").matches;
+                const index = containerId === 'zuziaGallery' ? currentZuziaIndex : currentIgorIndex;
+                updateGallery(containerId, index, imagesArray.length, true);
+            });
+        }
+        
+        // Funkcja do aktualizacji widoku galerii
+        function updateGallery(containerId, currentIndex, totalItems, isResize = false) {
+            const track = document.getElementById(containerId);
+            if (!track) return;
+            
+            const cards = track.querySelectorAll('.gallery-image-card');
+            
+            // Ustawienie aktywnego indeksu
+            if (containerId === 'zuziaGallery') {
+                currentZuziaIndex = currentIndex;
+            } else if (containerId === 'igorGallery') {
+                currentIgorIndex = currentIndex;
+            }
+            
+            cards.forEach(card => card.classList.remove('active'));
+            if (cards[currentIndex]) {
+                cards[currentIndex].classList.add('active');
+            }
 
-            <div class="section">
-                <h2>📞 Kontakt</h2>
-                <div class="contact-grid">
-                    <div class="contact-card">
-                        <div class="contact-icon">📱</div>
-                        <strong>Telefon</strong>
-                        <p>+48 530 139 902</p>
-                    </div>
-                    <div class="contact-card">
-                        <div class="contact-icon">✉️</div>
-                        <strong>Email</strong>
-                        <p>strefaplywania1@gmail.com</p>
-                    </div>
-                    <div class="contact-card">
-                        <div class="contact-icon">📍</div>
-                        <strong>Główna Lokalizacja</strong>
-                        <p>PŁYWALNIA NEPTUN, Bydgoszcz</p>
-                    </div>
-                </div>
-            </div>
+            let offset = 0;
+            let slideCount = 1; // Liczba widocznych slajdów na mobilnym
+            
+            if (!isMobile) {
+                 slideCount = 3; // Liczba widocznych slajdów na desktopie
+            }
 
-            <div class="social-section">
-                <div class="social-links">
-                    <a href="https://www.facebook.com/p/Igor-Dzierkacz-61566269692729/" target="_blank" class="social-btn facebook">
-                        <span>📘</span>
-                        <span>Facebook</span>
-                    </a>
-                    <a href="https://www.instagram.com/igor_dzierkacz/" target="_blank" class="social-btn instagram">
-                        <span>📸</span>
-                        <span>Instagram</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+            // Oblicz przesunięcie: chcemy, aby currentIndex był na środku (lub na pierwszym miejscu na mobilnym)
+            if (isMobile) {
+                offset = -currentIndex * 100;
+            } else {
+                // Dla desktopa: środek to index 1 z 3 widocznych
+                offset = -(currentIndex - 1) * (100 / 3);
+            }
+            
+            // Korekty dla skrajnych zdjęć na desktopie
+            if (!isMobile) {
+                if (currentIndex === 0) {
+                    offset = 0; // Pokaż 0, 1, 2
+                } else if (currentIndex === totalItems - 1) {
+                    offset = -(totalItems - slideCount) * (100 / 3); // Pokaż N-2, N-1, N
+                } else if (currentIndex === totalItems - 2) {
+                     offset = -(totalItems - slideCount) * (100 / 3); // Pokaż N-2, N-1, N
+                }
+            }
+            
+            // Ogranicznik dla startu
+            if (!isMobile && currentIndex === 0) {
+                offset = 0;
+            }
+            // Ogranicznik dla końca
+            if (!isMobile && totalItems >= 3 && currentIndex > totalItems - 2) {
+                offset = -(totalItems - 3) * (100 / 3);
+            }
 
-    <div id="certificateModal" class="certificate-modal" onclick="closeCertificate()">
-        <div class="certificate-modal-content" onclick="event.stopPropagation()">
-            <button class="certificate-modal-close" onclick="closeCertificate()">×</button>
-            <img id="certificateModalImage" src="" alt="Certyfikat" class="certificate-modal-image">
-        </div>
-    </div>
 
-    <div id="contactModal" class="certificate-modal" onclick="closeContactModal()">
-        <div class="certificate-modal-content contact-modal-content" onclick="event.stopPropagation()">
-            <button class="certificate-modal-close" onclick="closeContactModal()">×</button>
-            <div class="contact-modal-body">
-                <div class="contact-icon">☎️</div>
-                <strong>Skontaktuj się:</strong>
-                <p id="modalPhoneNumber"></p>
-                <a href="#" id="modalPhoneLink" class="call-btn">Zadzwoń teraz</a>
-            </div>
-        </div>
-    </div>
+            track.style.transform = `translateX(${offset}%)`;
+            
+            // Poprawki widoczności/opaczości na desktopie
+            if (!isMobile) {
+                cards.forEach((card, index) => {
+                    const img = card.querySelector('.gallery-image');
+                    // Reset
+                    img.style.opacity = '1';
+                    img.style.filter = 'brightness(1)';
+                    card.style.display = 'block';
 
-    <script>
+                    if (index === currentIndex) {
+                        img.style.opacity = '1';
+                        img.style.filter = 'brightness(1)';
+                        img.style.transform = 'scale(1.05)';
+                    } else if (index === currentIndex - 1 || index === currentIndex + 1) {
+                         img.style.opacity = '0.7';
+                         img.style.filter = 'brightness(0.7)';
+                         img.style.transform = 'scale(0.9)';
+                    } else {
+                        img.style.opacity = '0.4';
+                        img.style.filter = 'brightness(0.7)';
+                        img.style.transform = 'scale(0.9)';
+                    }
+                });
+            } else {
+                 cards.forEach((card, index) => {
+                    const img = card.querySelector('.gallery-image');
+                    if (index === currentIndex) {
+                        img.style.opacity = '1';
+                        img.style.filter = 'brightness(1)';
+                        img.style.transform = 'scale(1)';
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+        }
+
+        // Funkcja do przewijania galerii
+        function navigateGallery(containerId, direction) {
+            const imagesArray = containerId === 'zuziaGallery' ? zuziaImages : igorImages;
+            let currentIndex = containerId === 'zuziaGallery' ? currentZuziaIndex : currentIgorIndex;
+            const totalItems = imagesArray.length;
+            
+            currentIndex += direction;
+
+            if (currentIndex < 0) {
+                currentIndex = totalItems - 1;
+            } else if (currentIndex >= totalItems) {
+                currentIndex = 0;
+            }
+
+            updateGallery(containerId, currentIndex, totalItems);
+        }
+
+        // Funkcja do otwierania modala galerii
+        function openGalleryModal(trainerId, index) {
+            const modal = document.getElementById('galleryModal');
+            const modalImage = document.getElementById('galleryModalImage');
+            
+            activeModalImages = trainerId === 'zuzia' ? zuziaImages : igorImages;
+            activeModalIndex = index;
+            modalImage.src = activeModalImages[activeModalIndex];
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Funkcja do przewijania zdjęć w modal
+        function navigateModal(direction) {
+            activeModalIndex += direction;
+            const totalItems = activeModalImages.length;
+            
+            if (activeModalIndex < 0) {
+                activeModalIndex = totalItems - 1;
+            } else if (activeModalIndex >= totalItems) {
+                activeModalIndex = 0;
+            }
+
+            const modalImage = document.getElementById('galleryModalImage');
+            modalImage.src = activeModalImages[activeModalIndex];
+            
+            // Po przewinięciu modala, zaktualizuj też widok głównej galerii
+            const trainerId = activeModalImages === zuziaImages ? 'zuziaGallery' : 'igorGallery';
+            const currentImages = activeModalImages === zuziaImages ? zuziaImages : igorImages;
+            updateGallery(trainerId, activeModalIndex, currentImages.length);
+        }
+
+        // Funkcja do zamykania modala galerii
+        function closeGalleryModal() {
+            const modal = document.getElementById('galleryModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
         function showPage(pageId) {
             const pages = document.querySelectorAll('.page');
             pages.forEach(page => page.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
             window.scrollTo(0, 0);
+            
+            // Resetowanie galerii przy zmianie strony
+            if (pageId === 'zuzia') {
+                 updateGallery('zuziaGallery', 0, zuziaImages.length, true);
+            } else if (pageId === 'igor') {
+                 updateGallery('igorGallery', 0, igorImages.length, true);
+            }
         }
 
         function openCertificate(imageUrl) {
@@ -1483,15 +1857,30 @@ Jeśli szukasz trenerki, która nie tylko poprowadzi Cię profesjonalnie, ale te
             if (event.key === 'Escape') {
                 closeCertificate();
                 closeContactModal(); // Dodano zamykanie modala kontaktowego
+                closeGalleryModal(); // Dodano zamykanie modala galerii
+            } else if (document.getElementById('galleryModal').classList.contains('active')) {
+                // Obsługa strzałek w modal galerii
+                if (event.key === 'ArrowLeft') {
+                    navigateModal(-1);
+                } else if (event.key === 'ArrowRight') {
+                    navigateModal(1);
+                }
+            } else if (document.getElementById('zuzia').classList.contains('active') || document.getElementById('igor').classList.contains('active')) {
+                // Obsługa strzałek w galerii głównej
+                const activeGalleryId = document.getElementById('zuzia').classList.contains('active') ? 'zuziaGallery' : 'igorGallery';
+                if (event.key === 'ArrowLeft') {
+                    navigateGallery(activeGalleryId, -1);
+                } else if (event.key === 'ArrowRight') {
+                    navigateGallery(activeGalleryId, 1);
+                }
             }
         });
     </script>
-    
-    <footer style="position: relative; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); padding: 30px 20px; text-align: center; border-top: 2px solid rgba(255,255,255,0.1); margin-top: 0; z-index: 100;">
-        <p style="color: rgba(255,255,255,0.7); font-size: 1em; margin: 0; font-weight: 500; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+<footer style="position: relative; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); padding: 30px 20px; text-align: center; border-top: 2px solid rgba(255,255,255,0.1); margin-top: 0; z-index: 100;">
+<p style="color: rgba(255,255,255,0.7); font-size: 1em; margin: 0; font-weight: 500; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
             Designed and created by 
-            <a href="https://www.instagram.com/_igiblack_/" target="_blank" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: #667eea; font-weight: 700; font-size: 1.15em; letter-spacing: 0.5px; text-decoration: none; transition: all 0.3s ease; display: inline-block;" onmouseover="this.style.transform='scale(1.1)'; this.style.textShadow='0 0 20px rgba(102, 126, 234, 0.5)';" onmouseout="this.style.transform='scale(1)'; this.style.textShadow='none';">igiblack</a>
-        </p>
-    </footer>
+            <a href="https://www.instagram.com/_igiblack_/" onmouseout="this.style.transform='scale(1)'; this.style.textShadow='none';" onmouseover="this.style.transform='scale(1.1)'; this.style.textShadow='0 0 20px rgba(102, 126, 234, 0.5)';" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: #667eea; font-weight: 700; font-size: 1.15em; letter-spacing: 0.5px; text-decoration: none; transition: all 0.3s ease; display: inline-block;" target="_blank">igiblack</a>
+</p>
+</footer>
 </body>
 </html>
